@@ -19,8 +19,8 @@ public class UserEntityListener {
 
 	@PrePersist
 	public void prePersist(Medicaluser medicaluser) {
-		if (medicaluser.getUserId() == null || medicaluser.getUserId().isEmpty()) {
-			medicaluser.setUserId(idGenerator.generateId("ACU", "Medicaluser", "medicaluserId"));
+		if (medicaluser.getMedicaluserId() == null || medicaluser.getMedicaluserId().isEmpty()) {
+			medicaluser.setMedicaluserId(idGenerator.generateId("ACU", "Medicaluser", "medicaluserId"));
 		}
 	}
 }

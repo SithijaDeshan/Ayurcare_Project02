@@ -1,64 +1,24 @@
-package com.project2.ayurcare.ayurcare_backend.entity;
+package com.project2.ayurcare.ayurcare_backend.DTO;
 
-import java.util.List;
+public class MedicaluserDTO {
 
-import com.project2.ayurcare.ayurcare_backend.entity.listener.UserEntityListener;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "medicaluser")
-@EntityListeners(UserEntityListener.class)
-public class Medicaluser {
-
-	@Id
-	@Column(name = "medicaluser_id", nullable = false, length = 100)
 	private String medicaluserId;
-
-	@Column(name = "medicaluser_firstname", nullable = false, length = 100)
-	private String medicaluserFirstname;
-
-	@Column(name = "medicaluser_lastname", nullable = false, length = 100)
-	private String medicaluserLastname;
-
-	@Column(name = "medicaluser_email", nullable = false, length = 255)
-	private String medicaluserEmail;
-
-	@Column(name = "medicaluser_phoneno", nullable = false, length = 10)
-	private String medicaluserPhoneno;
-
-	@Lob
-	@Column(name = "medicaluser_photo", nullable = true)
-	private byte[] medicaluserPhoto;
-
-	@Column(name = "medicaluser_address", nullable = false, length = 255)
-	private String medicaluserAddress;
-
-	@Column(name = "medicaluser_role", nullable = false, length = 255)
-	private String medicaluserRole = "Patient";
-
-	@Column(name = "medicaluser_Intreatment", nullable = false, length = 5)
-	private String medicaluserIntreatment;
-
-	@OneToMany(mappedBy = "medicaluser")
-	private List<Patient> patients;
-
-	@OneToMany(mappedBy = "medicaluser")
-	private List<Payment> payments;
-
-	public Medicaluser() {
+    private String medicaluserFirstname;
+    private String medicaluserLastname;
+    private String medicaluserEmail;
+    private String medicaluserPhoneno;
+    private byte[] medicaluserPhoto;
+    private String medicaluserAddress;
+    private String medicaluserRole;
+    private String medicaluserIntreatment;
+    
+	public MedicaluserDTO() {
 
 	}
 
-	public Medicaluser(String medicaluserId, String medicaluserFirstname, String medicaluserLastname,
+	public MedicaluserDTO(String medicaluserId, String medicaluserFirstname, String medicaluserLastname,
 			String medicaluserEmail, String medicaluserPhoneno, byte[] medicaluserPhoto, String medicaluserAddress,
-			String medicaluserRole, String medicaluserIntreatment, List<Patient> patients, List<Payment> payments) {
+			String medicaluserRole, String medicaluserIntreatment) {
 		super();
 		this.medicaluserId = medicaluserId;
 		this.medicaluserFirstname = medicaluserFirstname;
@@ -69,8 +29,6 @@ public class Medicaluser {
 		this.medicaluserAddress = medicaluserAddress;
 		this.medicaluserRole = medicaluserRole;
 		this.medicaluserIntreatment = medicaluserIntreatment;
-		this.patients = patients;
-		this.payments = payments;
 	}
 
 	public String getMedicaluserId() {
@@ -144,23 +102,6 @@ public class Medicaluser {
 	public void setMedicaluserIntreatment(String medicaluserIntreatment) {
 		this.medicaluserIntreatment = medicaluserIntreatment;
 	}
-
-	public List<Patient> getPatients() {
-		return patients;
-	}
-
-	public void setPatients(List<Patient> patients) {
-		this.patients = patients;
-	}
-
-	public List<Payment> getPayments() {
-		return payments;
-	}
-
-	public void setPayments(List<Payment> payments) {
-		this.payments = payments;
-	}
-
-	
-
+    
+    
 }
