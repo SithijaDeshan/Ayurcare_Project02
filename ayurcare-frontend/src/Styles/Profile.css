@@ -1,0 +1,112 @@
+.ba-section {
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    background-color: #FAF1E4;
+}
+
+/* Image */
+.ba-image-content {
+    width: 50%;
+    max-width: 100%;
+    text-align: center;
+}
+
+.ba-image1 {
+    width: 80%; /* Reduce the width to 80% of its container */
+    max-height: 100%; /* Limit the height to 70% of the viewport height */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 40px;
+    object-fit: cover; /* Ensure the image covers the container */
+}
+
+/* Text */
+.ba-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+.ba-title {
+    color: #435334;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: .7px;
+}
+
+/* Checks */
+.ba-checks {
+    color: #435334;
+    margin: 28px 0;
+    font-family: 'Rubik', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: .7px;
+}
+
+.ba-check-first {
+    margin-top: 5px;
+}
+
+.ba-check-last {
+    margin-bottom: 40px;
+}
+
+/* Book Appointment Button */
+.logout-btn {
+    margin-top: 20px;
+    padding: 18px 24px;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    outline: transparent;
+    background-color: #435334;
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+    letter-spacing: .8px;
+    cursor: pointer;
+    transition: all .4s ease;
+}
+
+.logout-btn:hover {
+    color: #435334;
+    background-color: transparent;
+    border: 1px solid #435334;
+}
+
+/* Treattable Container */
+.treattable-container {
+    background-color: #FAF1E4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+}
+
+/* Responsive */
+@media screen and (max-width: 1000px) {
+    .ba-section {
+        flex-direction: column;
+        padding: 16px;
+    }
+    .ba-image-content, .ba-text-content {
+        width: 100%;
+    }
+    .ba-image1 {
+        max-height: 50vh; /* Adjust max height for smaller screens */
+    }
+    .ba-title {
+        font-size: 32px;
+    }
+    .ba-checks {
+        font-size: 18px;
+    }
+}

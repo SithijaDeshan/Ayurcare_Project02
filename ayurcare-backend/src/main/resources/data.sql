@@ -13,14 +13,14 @@ VALUES
 -- Insert into Patient table
 INSERT INTO patient (patient_id, medicaluser_id, category_id, treatment_startdate, duration)
 VALUES
-('ACPT00001', 'ACU00002', 'ACC00001', '2024-01-01', '30 days'),
+('ACPT00001', 'ACU00001', 'ACC00001', '2024-01-01', '30 days'),
 ('ACPT00002', 'ACU00002', 'ACC00002', '2024-02-01', '15 days');
 
 -- Insert into MedicalRecord table
 INSERT INTO medicalrecord (medical_id, patient_id, prescription_issuedate, medical_record)
 VALUES
-('ACMR00001', 'ACPT00001', '2024-01-02', 'dummy_data_1'),
-('ACMR00002', 'ACPT00002', '2024-02-02', 'dummy_data_2');
+('ACMR00001', 'ACPT00001', '2024-01-02', 'Picture 1'),
+('ACMR00002', 'ACPT00002', '2024-02-02', 'Picture 2');
 
 -- Insert into Payment table
 INSERT INTO payment (payment_id, invoice_id, payment_date, payment_amount, medicaluser_id)

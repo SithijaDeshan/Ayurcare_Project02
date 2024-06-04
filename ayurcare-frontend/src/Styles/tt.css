@@ -1,0 +1,47 @@
+/* App.css */
+.table-container {
+    width: 100%;
+    margin: 20px auto;
+    overflow-x: auto;
+    padding: 40px;
+}
+
+.custom-table {
+    border: solid #435334;
+    border-radius: 30px;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Poppins;
+    font-size: 18px;
+    text-align: left;
+}
+
+.custom-table th, .custom-table td {
+    padding: 12px 15px;
+}
+
+.custom-table thead tr {
+    background-color: #435334;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+.custom-table tbody tr {
+    border-bottom: 1px solid #CEDEBD;
+}
+
+.custom-table tbody tr:nth-of-type(even) {
+    background-color: #CEDEBD;
+}
+
+.custom-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.prescription-photo {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}

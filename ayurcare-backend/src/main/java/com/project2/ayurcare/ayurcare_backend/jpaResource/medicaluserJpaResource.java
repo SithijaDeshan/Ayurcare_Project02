@@ -62,9 +62,14 @@ public class medicaluserJpaResource {
 	        return medicaluserService.getAllUsers();
 	    }
 
-	    @GetMapping("/{medical_id}")
+	    @GetMapping("/id/{medical_id}")
 	    public MedicaluserDTO retrieveUser(@PathVariable String medical_id) {
 	        return medicaluserService.getUserById(medical_id);
+	    }
+	    
+	    @GetMapping("/email/{medicaluserEmail}")
+	    public MedicaluserDTO retrieveUserByEmail(@PathVariable String medicaluserEmail) {
+	        return medicaluserService.getUserByEmail(medicaluserEmail);
 	    }
 
 	    @DeleteMapping("/{medical_id}")

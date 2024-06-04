@@ -1,6 +1,7 @@
 package com.project2.ayurcare.ayurcare_backend.entity;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import com.project2.ayurcare.ayurcare_backend.entity.listener.MedicalRecordEntityListener;
 
@@ -9,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -32,9 +32,8 @@ public class MedicalRecord {
 	@Temporal(TemporalType.DATE)
 	private Date prescriptionIssueDate;
 
-	@Lob
-	@Column(name = "medical_record", nullable = false)
-	private byte[] medicalRecord;
+	@Column(name = "medical_record", nullable = true)
+	private String medicalRecord;
 
 	public MedicalRecord() {
 
@@ -64,12 +63,37 @@ public class MedicalRecord {
 		this.prescriptionIssueDate = prescriptionIssueDate;
 	}
 
-	public byte[] getMedicalRecord() {
+	public String getMedicalRecord() {
 		return medicalRecord;
 	}
+	
+//	public Optional<String>  getMedicalRecord() {
+//		return Optional.ofNullable(medicalRecord);
+//	}
 
-	public void setMedicalRecord(byte[] medicalRecord) {
+	public void setMedicalRecord(String medicalRecord) {
 		this.medicalRecord = medicalRecord;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(medicalId, medicalRecord, patient, prescriptionIssueDate);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MedicalRecord other = (MedicalRecord) obj;
+		return Objects.equals(medicalId, other.medicalId) && Objects.equals(medicalRecord, other.medicalRecord)
+				&& Objects.equals(patient, other.patient)
+				&& Objects.equals(prescriptionIssueDate, other.prescriptionIssueDate);
+	}
+	
+	
 
 }

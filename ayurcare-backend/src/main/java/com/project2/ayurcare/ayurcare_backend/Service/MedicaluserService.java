@@ -32,6 +32,13 @@ public class MedicaluserService {
                 .orElseThrow(() -> new ResourceNotFoundException("Medical user not found with id: " + medicalId));
         return modelMapperConfig.map(medicaluser, MedicaluserDTO.class);
     }
+    
+    public MedicaluserDTO getUserByEmail(String medicaluserEmail) {
+        Medicaluser medicaluser = medicalUserRepository.getUserByEmail(medicaluserEmail);
+        return modelMapperConfig.map(medicaluser, MedicaluserDTO.class);
+    }
+    
+    
 
     public MedicaluserDTO createUser(MedicaluserDTO medicaluserDTO) {
         Medicaluser medicaluser = modelMapperConfig.map(medicaluserDTO, Medicaluser.class);

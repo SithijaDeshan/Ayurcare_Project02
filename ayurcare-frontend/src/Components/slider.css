@@ -1,0 +1,11 @@
+.slider-container{
+    max-width: 100vw;
+    overflow: hidden;
+}
+.slider-home img{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    background-repeat: no-repeat;
+
+}
