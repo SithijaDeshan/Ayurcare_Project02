@@ -91,15 +91,30 @@
     margin-top: 15px;
 
 }
+
+.text-appointment-btn:disabled {
+  background-color: #CEDEBD;
+  cursor: not-allowed;
+  border: 1px solid #435334;
+}
+
 .appointment-btn:hover {
     color: #1A8EFD;
     background-color: transparent;
     border: 1px solid #CEDEBD;
 }
+
+.back-button {
+    margin-right: 10px; /* To add some space between the back button and confirm button */
+  }
+
 .button-container{
-    width: 50vw;
+    /* width: 50vw;
     display: flex;
-    justify-content: center;
+    justify-content: center; */
+    display: flex;
+  justify-content: center;
+  gap: 10px; /* Optional, to add some space between buttons */
 }
 
 /* Responsive */

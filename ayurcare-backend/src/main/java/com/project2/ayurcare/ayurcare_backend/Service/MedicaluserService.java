@@ -48,11 +48,30 @@ public class MedicaluserService {
         return modelMapperConfig.map(savedUser, MedicaluserDTO.class);
     }
 
+//    public MedicaluserDTO updateUser(String medicalId, MedicaluserDTO medicaluserDTO) {
+//        Medicaluser existingUser = medicalUserRepository.findById(medicalId)
+//                .orElseThrow(() -> new ResourceNotFoundException("Medical user not found with id: " + medicalId));
+//        // Update the fields of the existing user with DTO data
+//        modelMapperConfig.map(medicaluserDTO, existingUser);
+//        // Save the updated user
+//        Medicaluser updatedUser = medicalUserRepository.save(existingUser);
+//        return modelMapperConfig.map(updatedUser, MedicaluserDTO.class);
+//    }
+    
     public MedicaluserDTO updateUser(String medicalId, MedicaluserDTO medicaluserDTO) {
         Medicaluser existingUser = medicalUserRepository.findById(medicalId)
                 .orElseThrow(() -> new ResourceNotFoundException("Medical user not found with id: " + medicalId));
-        // Update the fields of the existing user with DTO data
-        modelMapperConfig.map(medicaluserDTO, existingUser);
+        
+        // Update only the fields of the existing user without changing the ID
+        existingUser.setMedicaluserFirstname(medicaluserDTO.getMedicaluserFirstname());
+        existingUser.setMedicaluserLastname(medicaluserDTO.getMedicaluserLastname());
+        existingUser.setMedicaluserEmail(medicaluserDTO.getMedicaluserEmail());
+        existingUser.setMedicaluserPhoneno(medicaluserDTO.getMedicaluserPhoneno());
+        existingUser.setMedicaluserPhoto(medicaluserDTO.getMedicaluserPhoto());
+        existingUser.setMedicaluserAddress(medicaluserDTO.getMedicaluserAddress());
+        existingUser.setMedicaluserRole(medicaluserDTO.getMedicaluserRole());
+        existingUser.setMedicaluserIntreatment(medicaluserDTO.getMedicaluserIntreatment());
+        
         // Save the updated user
         Medicaluser updatedUser = medicalUserRepository.save(existingUser);
         return modelMapperConfig.map(updatedUser, MedicaluserDTO.class);

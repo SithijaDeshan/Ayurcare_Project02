@@ -1,0 +1,185 @@
+/* Navbar */
+.nav {
+    background-color: #9EB384;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Form Section */
+.appointment-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #CEDEBD;
+    min-height: 100vh;
+}
+
+.appointment-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.form-container {
+    background: #CEDEBD;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: #435334;
+    text-align: center;
+}
+
+/* Form Content */
+.form-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.form-content label {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #435334;
+    margin-bottom: 8px;
+}
+
+.form-content label::before {
+    content: "<>";
+    color: red;
+    margin-right: 4px;
+}
+
+.form-content :is(input, select) {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 16px;
+    border: 1px solid #9EB384;
+    border-radius: 20px;
+    background-color: #FAF1E4;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    color: #435334;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-content :is(input, select):focus {
+    border-color: #435334;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 16px;
+    border: none;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 16px;
+    border: 1px solid #9EB384;
+    border-radius: 20px;
+    background-color: #FAF1E4;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    color: #435334;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #435334;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.text-appointment-btn, .btn-success {
+    padding: 14px 20px;
+    color: #FAF1E4;
+    border: 1px solid transparent;
+    border-radius: 28px;
+    background-color: #435334;
+    font-size: 18px;
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.text-appointment-btn:hover, .btn-success:hover {
+    background-color: #FAF1E4;
+    color: #435334;
+    border: 1px solid #435334;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Footer */
+.legal-footer {
+    background-color: #9EB384;
+    color: #FAF1E4;
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+
+    .form-content label {
+        font-size: 16px;
+    }
+
+    .form-content :is(input, select) {
+        font-size: 14px;
+    }
+
+    .text-appointment-btn, .btn-success {
+        font-size: 16px;
+    }
+}

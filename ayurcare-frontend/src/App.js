@@ -1,5 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Home";
 import Legal from "./Pages/Legal";
@@ -11,13 +15,20 @@ import Profile from "./Components/Profile";
 import Doctors from "./Components/Doctors";
 import Treatments from "./Components/Info";
 import ImageUpload from "./Pages/ImageUpload";
+import MedicalUserDetailsUpdate from "./Components/MedicalUserDetailsUpdate";
+import AdminHome from "./Pages/admin/home/AdminHome";
+import Topbar from "./Components/admin/topbar/Topbar";
+import Sidebar from "./Components/admin/sidebar/Sidebar";
+import User from "./Pages/admin/user/User"
+import UserList from "./Pages/admin/userList/UserList"
+import NewUser from "./Pages/admin/newUser/NewUser"
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-
+      <Router>
         <Routes>
+          {/* Main routes */}
           <Route path="/" element={<Home />} />
           <Route path="/image" element={<ImageUpload />} />
           <Route path="/legal" element={<Legal />} />
@@ -27,10 +38,31 @@ function App() {
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/treatments" element={<Treatments />} />
           <Route path="/appointment" element={<Appointment />} />
+          <Route path="/medicalUserUpdate/:medicaluserEmail" element={<MedicalUserDetailsUpdate />} />
           <Route path="*" element={<NotFound />} />
+
+          {/* Admin routes */}
+          <Route path="/admin/*" element={<AdminLayout />} />
         </Routes>
-      </BrowserRouter>
-      
+      </Router>
+    </div>
+  );
+}
+
+function AdminLayout() {
+  return (
+    <div className="admin-layout">
+      <Topbar />
+      <div className="container">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<AdminHome />} />
+          <Route path="users" element={<UserList />} />
+          <Route path="user/:userId" element={<User />} />
+          <Route path="newuser" element={<NewUser />} />
+          
+        </Routes>
+      </div>
     </div>
   );
 }

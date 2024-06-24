@@ -28,6 +28,9 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Patient> patients;
+    
+    @OneToMany(mappedBy = "category")
+    private List<TimeSlot> timeSlots;
 
 	public Category() {
 

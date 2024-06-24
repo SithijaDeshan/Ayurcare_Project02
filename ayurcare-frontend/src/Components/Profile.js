@@ -7,13 +7,13 @@ import "../Styles/Profile.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Treattable from "./treattable";
-import { retriveMedicalUserDetails, retriveMedicalRecordDetails } from "../Components/api/AyurcareApiService";
+import { retriveMedicalUserDetails, retriveMedicalRecordDetails } from "../Components/api/AyurcareApiService"; 
 
 function Profile() {
   const navigate = useNavigate();
 
-  const handleBookAppointmentClick = () => {
-    navigate("/appointment");
+  function handleUpdateMedicaluser(medicaluserEmail){
+    navigate(`/medicalUserUpdate/${medicaluserEmail}`);
   };
 
   const [medicalUser, setMedicalUser] = useState({});
@@ -83,7 +83,7 @@ function Profile() {
             {medicalUser.medicaluserPhoneno}
           </p>
 
-          <button className="logout-btn" type="button" onClick={handleBookAppointmentClick}>
+          <button className="logout-btn" type="button" onClick={() => handleUpdateMedicaluser(medicalUser.medicaluserEmail)}>
             <FontAwesomeIcon icon={faEdit} /> Edit
           </button>
         </div>

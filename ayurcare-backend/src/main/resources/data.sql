@@ -7,8 +7,14 @@ VALUES
 -- Insert into Category table
 INSERT INTO category (category_id, predefined_time, categories)
 VALUES
-('ACC00001', '2023-06-01', 'General Medicine'),
-('ACC00002', '2023-06-02', 'Ayurveda Therapy');
+('ACC00001', '08:00-10:30', 'A'),
+('ACC00002', '10:40-12:00', 'B'),
+('ACC00003', '13:00-13:30', 'C'),
+('ACC00004', '13:30-14:00', 'D'),
+('ACC00005', '14:00-14:30', 'E'),
+('ACC00006', '14:30-15:00', 'F'),
+('ACC00007', '15:00-15:30', 'G'),
+('ACC00008', '15:30-16:00', 'H');
 
 -- Insert into Patient table
 INSERT INTO patient (patient_id, medicaluser_id, category_id, treatment_startdate, duration)

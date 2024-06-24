@@ -1,180 +1,171 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/AppointmentForm.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import logo from "../Assets/logo.png";
+import {
+  retriveMedicalUserDetails,
+  retrivePatientDetails,
+  retriveDates,
+  retriveAvailableTimeSlots,
+} from "./api/AyurcareApiService";
 
 function AppointmentForm() {
+  const [medicaluserId, setMedicaluserId] = useState(null);
+  const [patientId, setPatientId] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const [symptoms, setSymptoms] = useState("A");
+  const [appointmentDate, setAppointmentDate] = useState("");
+  const [appointmentTime, setAppointmentTime] = useState("");
+
+  const [symptomsFilled, setSymptomsFilled] = useState(true);
+  const [dateFilled, setDateFilled] = useState(false);
+  const [timeFilled, setTimeFilled] = useState(false);
+
+  const [availableDates, setAvailableDates] = useState([]); // State to store available dates
+  const [availableTimeSlots, setAvailableTimeSlots] = useState([]); // State to store available time slots
+  const [isFormFilled, setIsFormFilled] = useState(false);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  const [patientName, setPatientName] = useState("");
-  const [patientNumber, setPatientNumber] = useState("");
-  const [patientGender, setPatientGender] = useState("default");
-  const [appointmentTime, setAppointmentTime] = useState("");
-  const [preferredMode, setPreferredMode] = useState("default");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formErrors, setFormErrors] = useState({});
+  useEffect(() => {
+    retriveMedicalUserDetails("jane.smith@example.com")
+      .then((response) => {
+        setMedicaluserId(response.data.medicaluserId);
+        return retrivePatientDetails(response.data.medicaluserId); // Chain the patient details retrieval
+      })
+      .then((response) => {
+        setPatientId(response.data.patientId);
+        return retriveDates();
+      })
+      .then((response) => {
+        setAvailableDates(response.data); // Set available dates
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false after all data is fetched or if there's an error
+      });
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Validate form inputs
-    const errors = {};
-    if (!patientName.trim()) {
-      errors.patientName = "Patient name is required";
-    } else if (patientName.trim().length < 8) {
-      errors.patientName = "Patient name must be at least 8 characters";
-    }
-
-    if (!patientNumber.trim()) {
-      errors.patientNumber = "Patient phone number is required";
-    } else if (patientNumber.trim().length !== 10) {
-      errors.patientNumber = "Patient phone number must be of 10 digits";
-    }
-
-    if (patientGender === "default") {
-      errors.patientGender = "Please select patient gender";
-    }
-    if (!appointmentTime) {
-      errors.appointmentTime = "Appointment time is required";
-    } else {
-      const selectedTime = new Date(appointmentTime).getTime();
-      const currentTime = new Date().getTime();
-      if (selectedTime <= currentTime) {
-        errors.appointmentTime = "Please select a future appointment time";
-      }
-    }
-    if (preferredMode === "default") {
-      errors.preferredMode = "Please select preferred mode";
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-
-    // Reset form fields and errors after successful submission
-    setPatientName("");
-    setPatientNumber("");
-    setPatientGender("default");
-    setAppointmentTime("");
-    setPreferredMode("default");
-    setFormErrors({});
-
-    toast.success("Appointment Scheduled !", {
-      position: toast.POSITION.TOP_CENTER,
-      onOpen: () => setIsSubmitted(true),
-      onClose: () => setIsSubmitted(false),
-    });
+  const handleSymptomsChange = (e) => {
+    setSymptoms(e.target.value);
+    setAvailableTimeSlots([]); // Reset available time slots when symptoms change
   };
+
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    setAppointmentDate(selectedDate);
+    setDateFilled(selectedDate.trim() !== "");
+
+    if (symptomsFilled && selectedDate.trim() !== "") {
+      retriveAvailableTimeSlots(symptoms, selectedDate)
+        .then((response) => {
+          setAvailableTimeSlots(response.data); // Set available time slots
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  const handleTimeChange = (e) => {
+    setAppointmentTime(e.target.value);
+    setTimeFilled(e.target.value.trim() !== "");
+  };
+
+  const formatDate = (time) => {
+    const [hours, minutes] = time.split(':');
+    return `${hours}:${minutes}`;
+  };
+
+  useEffect(() => {
+    setIsFormFilled(symptomsFilled && dateFilled && timeFilled);
+  }, [symptomsFilled, dateFilled, timeFilled]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="appointment-form-section">
       <div className="nav">
         <Link to="/">
-            <div className="nav-logo">
-              <img src={logo} alt="Logo" />
+          <div className="nav-logo">
+            <img src={logo} alt="Logo" />
           </div>
         </Link>
       </div>
-
 
       <div className="form-container">
         <h2 className="form-title">
           <span>Book Appointment Online</span>
         </h2>
 
-        <form className="form-content" onSubmit={handleSubmit}>
+        <form className="form-content">
           <label>
-            Patient Name:
+            Please select your symptoms:
             <input
               type="text"
-              value={patientName}
-              onChange={(e) => setPatientName(e.target.value)}
+              value={symptoms}
+              onChange={handleSymptomsChange}
               required
             />
-            {formErrors.patientName && <p className="error-message">{formErrors.patientName}</p>}
           </label>
 
           <br />
           <label>
-            Phone Number:
-            <input
-              type="text"
-              value={patientNumber}
-              onChange={(e) => setPatientNumber(e.target.value)}
-              required
-            />
-            {formErrors.patientNumber && <p className="error-message">{formErrors.patientNumber}</p>}
-          </label>
-
-          <br />
-          <label>
-            Gender:
+            Preferred Appointment Date:
             <select
-              value={patientGender}
-              onChange={(e) => setPatientGender(e.target.value)}
+              value={appointmentDate}
+              onChange={handleDateChange}
+              disabled={!symptomsFilled}
               required
             >
               <option value="default">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="private">I will inform Doctor only</option>
+              {availableDates.map((date, index) => (
+                <option key={index} value={date}>
+                  {date}
+                </option>
+              ))}
             </select>
-            {formErrors.patientGender && <p className="error-message">{formErrors.patientGender}</p>}
           </label>
 
           <br />
+
           <label>
-            Preferred Appointment Time:
-            <input
-              type="datetime-local"
+            Preferred Appointment Time Slot:
+            <select
               value={appointmentTime}
-              onChange={(e) => setAppointmentTime(e.target.value)}
+              onChange={handleTimeChange}
+              disabled={!dateFilled}
               required
-            />
-            {formErrors.appointmentTime && <p className="error-message">{formErrors.appointmentTime}</p>}
+            >
+              <option value="default">Select</option>
+              {availableTimeSlots.map((slot, index) => (
+                <option key={index} value={`${appointmentDate}T${formatDate(slot.startTime)}`}>
+                  {`${formatDate(slot.startTime)} to ${formatDate(slot.endTime)}`}
+                </option>
+              ))}
+            </select>
           </label>
 
           <br />
 
-          <label>
-            Description:
-            <input
-                type="text area"
-                value={patientNumber}
-                onChange={(e) => setPatientNumber(e.target.value)}
-                required
-            />
-            {formErrors.patientNumber && <p className="error-message">{formErrors.patientNumber}</p>}
-          </label>
-
-          <br />
-
-          {/*<label>*/}
-          {/*  Preferred Mode:*/}
-          {/*  <select*/}
-          {/*    value={preferredMode}*/}
-          {/*    onChange={(e) => setPreferredMode(e.target.value)}*/}
-          {/*    required*/}
-          {/*  >*/}
-          {/*    <option value="default">Select</option>*/}
-          {/*    <option value="voice">Voice Call</option>*/}
-          {/*    <option value="video">Video Call</option>*/}
-          {/*  </select>*/}
-          {/*  {formErrors.preferredMode && <p className="error-message">{formErrors.preferredMode}</p>}*/}
-          {/*</label>*/}
-
-          {/*<br />*/}
-          <div className='button-container'>
-          <button type="submit" className="text-appointment-btn">
-            Confirm Appointment
-          </button>
+          <div className="button-container">
+          <Link to="/">
+              <button type="button" className="text-appointment-btn back-button">
+                Back
+              </button>
+            </Link>
+            <button type="submit" className="text-appointment-btn" disabled={!isFormFilled}>
+              Confirm Appointment
+            </button>
           </div>
-
-          <p className="success-message" style={{display: isSubmitted ? "block" : "none"}}>Appointment details has been sent to the patients phone number via SMS.</p>
         </form>
       </div>
 

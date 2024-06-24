@@ -14,8 +14,8 @@ const Ttable = ({ medicaluserId }) => {
         console.log(medicaluserId)
         retriveMedicalRecordDetails(medicaluserId)
         .then((response) => {
-            console.log(response)
             setMedicalRecord(response.data)
+            console.log(response)
           })
     
     

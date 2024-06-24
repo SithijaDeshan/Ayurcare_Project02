@@ -72,18 +72,18 @@ public class medicaluserJpaResource {
 	        return medicaluserService.getUserByEmail(medicaluserEmail);
 	    }
 
-	    @DeleteMapping("/{medical_id}")
+	    @DeleteMapping("/delete/{medical_id}")
 	    public ResponseEntity<Void> deleteUser(@PathVariable String medical_id) {
 	        medicaluserService.deleteUser(medical_id);
 	        return ResponseEntity.noContent().build();
 	    }
 
-	    @PostMapping
+	    @PostMapping("/create")
 	    public MedicaluserDTO createUser(@RequestBody MedicaluserDTO medicaluserDTO) {
 	        return medicaluserService.createUser(medicaluserDTO);
 	    }
 
-	    @PutMapping("/{medical_id}")
+	    @PutMapping("/update/{medical_id}")
 	    public MedicaluserDTO updateUser(@PathVariable String medical_id, @RequestBody MedicaluserDTO medicaluserDTO) {
 	        return medicaluserService.updateUser(medical_id, medicaluserDTO);
 	    }
