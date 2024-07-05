@@ -1,6 +1,6 @@
 package com.project2.ayurcare.ayurcare_backend.entity;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.project2.ayurcare.ayurcare_backend.entity.listener.MedicalRecordEntityListener;
@@ -12,8 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "medicalrecord")
@@ -28,9 +26,12 @@ public class MedicalRecord {
 	@JoinColumn(name = "patient_id", nullable = false)
 	private Patient patient;
 
+//	@Column(name = "prescription_issuedate", nullable = false)
+//	@Temporal(TemporalType.DATE)
+//	private Date prescriptionIssueDate;
+	
 	@Column(name = "prescription_issuedate", nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date prescriptionIssueDate;
+	private LocalDateTime prescriptionIssueDate;
 
 	@Column(name = "medical_record", nullable = true)
 	private String medicalRecord;
@@ -55,11 +56,11 @@ public class MedicalRecord {
 		this.patient = patient;
 	}
 
-	public Date getPrescriptionIssueDate() {
+	public LocalDateTime getPrescriptionIssueDate() {
 		return prescriptionIssueDate;
 	}
 
-	public void setPrescriptionIssueDate(Date prescriptionIssueDate) {
+	public void setPrescriptionIssueDate(LocalDateTime prescriptionIssueDate) {
 		this.prescriptionIssueDate = prescriptionIssueDate;
 	}
 

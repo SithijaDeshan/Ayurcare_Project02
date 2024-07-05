@@ -3,7 +3,6 @@ package com.project2.ayurcare.ayurcare_backend.jpaResource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,32 +28,18 @@ public class MedicalRecordJpaResource {
         return medicalRecordService.getMedicalRecordsForUser(medicaluserId);
     }
     
-    
-//    @PostMapping(
-//    		path = "/{medicalId}/image/upload",
-//    		consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE,
-//    		produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE
-//    		)
-//    public void uploadUserMedicalRecord(@PathVariable("medicalId") UUID medicalId, @RequestParam("file")MultipartFile file) {
-//    	medicalRecordService.uploadUserMedicalRecord(medicalId, file);
-//    }
-    
-    @PostMapping(
-    	    path = "/{medicalId}/image/upload",
-    	    consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE,
-    	    produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE
-    	)
-    	public ResponseEntity<String> uploadUserMedicalRecord(@PathVariable("medicalId") String medicalId, @RequestParam("file") MultipartFile file) {
-    	    if (file.isEmpty()) {
-    	        return ResponseEntity.badRequest().body("File is missing");
-    	    }
-    	    medicalRecordService.uploadUserMedicalRecord(medicalId, file);
-    	    return ResponseEntity.ok("File uploaded successfully");
-    	}
-    
-    @GetMapping("/{medicalId}/image/download")
-    public byte[] downloadUserMedicalRecord(@PathVariable("medicalId") String medicalId) {
-    	return medicalRecordService.downloadUserMedicalRecord(medicalId);
+    @PostMapping("{patientId}/image/upload")
+    public void uploadUserProfileImage(@PathVariable String patientId, @RequestParam("file") MultipartFile file) {
+        medicalRecordService.uploadUserMedicalRecord(patientId, file);
     }
 
+    @GetMapping("{patientId}/image/download")
+    public byte[] downloadUserMedicalRecord(@PathVariable String patientId) {
+        return medicalRecordService.downloadUserMedicalRecord(patientId);
+    }
+    
+    @GetMapping("/{patientId}/{medicalRecord}/image/download")
+    public byte[] downloadUserMedicalRecordWithImageName(@PathVariable String patientId, @PathVariable String medicalRecord) {
+        return medicalRecordService.downloadUserMedicalRecordwithNameOfTheImage(patientId, medicalRecord);
+    }
 }

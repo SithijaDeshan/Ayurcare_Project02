@@ -45,28 +45,28 @@ public class TimeSlotService {
 				LocalDate date = LocalDate.now().plusDays(i);
 				if (timeSlotRepository.findByDate(date).isEmpty()) {
 					switch (category.getCategories()) {
-					case "A":
+					case "Meda":
 						timeSlots.addAll(generateSlotsForCategory(category, "08:00", "10:30", 30, date));
 						break;
-					case "B":
+					case "Vata":
 						timeSlots.addAll(generateSlotsForCategory(category, "10:40", "12:00", 20, date));
 						break;
-					case "C":
+					case "Kapha":
 						timeSlots.addAll(generateSlotsForCategory(category, "13:00", "13:30", 10, date));
 						break;
-					case "D":
+					case "Pitta":
 						timeSlots.addAll(generateSlotsForCategory(category, "13:30", "14:00", 10, date));
 						break;
-					case "E":
+					case "Rasa":
 						timeSlots.addAll(generateSlotsForCategory(category, "14:00", "14:30", 10, date));
 						break;
-					case "F":
+					case "Mamsa":
 						timeSlots.addAll(generateSlotsForCategory(category, "14:30", "15:00", 10, date));
 						break;
-					case "G":
+					case "Rakta":
 						timeSlots.addAll(generateSlotsForCategory(category, "15:00", "15:30", 10, date));
 						break;
-					case "H":
+					case "Unknown":
 						timeSlots.addAll(generateSlotsForCategory(category, "15:30", "16:00", 10, date));
 						break;
 					default:

@@ -7,6 +7,7 @@ import "../Styles/Profile.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Treattable from "./treattable";
+import { ClipLoader } from "react-spinners";
 import { retriveMedicalUserDetails, retriveMedicalRecordDetails } from "../Components/api/AyurcareApiService"; 
 
 function Profile() {
@@ -38,15 +39,15 @@ function Profile() {
         setMedicaluserId(response.data.medicaluserId);
       })
       .catch((error) => console.log(error));
-  }
+  } 
 
   function refreshMedicalRecord(medicaluserId) {
     retriveMedicalRecordDetails(medicaluserId)
       .then((response) => {
         setMedicalRecord(response.data);
         // Assuming each medicalRecord has an image URL you need
-        if (response.data.length > 0 && response.data[0].medicalId) {
-          setImageUrl(`http://localhost:8080/users/${response.data[0].medicalId}/image/download`);
+        if (response.data.length > 0 && response.data[0].patientId) {
+          setImageUrl(`http://localhost:8080/users/${response.data[0].patientId}/image/download`);
         }
       })
       .catch((error) => console.log(error));
@@ -65,10 +66,6 @@ function Profile() {
           <p className="ba-checks ba-check-first">
             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "orange" }} />{" "}
             {medicalUser.medicaluserLastname}
-          </p>
-          <p className="ba-checks ba-check-first">
-            <FontAwesomeIcon icon={faCircleCheck} style={{ color: "red" }} />{" "}
-            {medicalUser.medicaluserIntreatment}
           </p>
           <p className="ba-checks ba-check-first">
             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "orange" }} />{" "}

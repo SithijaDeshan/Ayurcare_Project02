@@ -110,9 +110,8 @@ export default function MedicalUserDetailsUpdate() {
         <h2 className="form-title">
           <span>Please Update Your Details</span>
         </h2>
-      </div>
 
-      <div className="appointment-form-wrapper">
+        <div className="appointment-form-wrapper">
 
       
       <Formik
@@ -192,6 +191,11 @@ export default function MedicalUserDetailsUpdate() {
               </fieldset>
 
               <div className="button-container">
+              <Link to="/profile">
+              <button type="button" className="text-appointment-btn back-button">
+                Back
+              </button>
+            </Link>
                 <button className="text-appointment-btn" type="submit">
                   Save
                 </button>
@@ -201,6 +205,9 @@ export default function MedicalUserDetailsUpdate() {
         )}
       </Formik>
       </div>
+      </div>
+
+      
 
       
       <div className="legal-footer">

@@ -13,7 +13,7 @@ export const updateMedicalUserDetails
     = (medicaluserId, medicaluserDetails) => apiClient.put(`/users/update/${medicaluserId}`,medicaluserDetails)
 
 export const retriveMedicalRecordDetails
-    = (medicaluserId) => apiClient.get(`/users/${medicaluserId}/medical-records`)
+    = (medicaluserId) => apiClient.get(`/users/${medicaluserId}/medical-records`) 
 
 export const retriveAllMedicalUsers
     = () => apiClient.get(`/users`)

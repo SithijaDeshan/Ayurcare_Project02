@@ -1,20 +1,20 @@
 package com.project2.ayurcare.ayurcare_backend.DTO;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 public class MedicalRecordDTO {
 
     private String medicalId;
     private String patientId;
-    private Date prescriptionIssueDate;
+    private LocalDateTime prescriptionIssueDate;
     private String medicalRecord;
     
 	public MedicalRecordDTO() {
 
 	}
 
-	public MedicalRecordDTO(String medicalId, String patientId, Date prescriptionIssueDate, String medicalRecord) {
+	public MedicalRecordDTO(String medicalId, String patientId, LocalDateTime prescriptionIssueDate, String medicalRecord) {
 		super();
 		this.medicalId = medicalId;
 		this.patientId = patientId;
@@ -38,11 +38,11 @@ public class MedicalRecordDTO {
 		this.patientId = patientId;
 	}
 
-	public Date getPrescriptionIssueDate() {
+	public LocalDateTime getPrescriptionIssueDate() {
 		return prescriptionIssueDate;
 	}
 
-	public void setPrescriptionIssueDate(Date prescriptionIssueDate) {
+	public void setPrescriptionIssueDate(LocalDateTime prescriptionIssueDate) {
 		this.prescriptionIssueDate = prescriptionIssueDate;
 	}
 

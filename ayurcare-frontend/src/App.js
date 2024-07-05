@@ -22,6 +22,7 @@ import Sidebar from "./Components/admin/sidebar/Sidebar";
 import User from "./Pages/admin/user/User"
 import UserList from "./Pages/admin/userList/UserList"
 import NewUser from "./Pages/admin/newUser/NewUser"
+import PredictionComponent from "./Components/PredictionComponent"
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/treatments" element={<Treatments />} />
+          <Route path="/prediction" element={<PredictionComponent />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/medicalUserUpdate/:medicaluserEmail" element={<MedicalUserDetailsUpdate />} />
           <Route path="*" element={<NotFound />} />

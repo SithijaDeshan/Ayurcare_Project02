@@ -50,6 +50,10 @@ public class Patient {
 	public String getPatientId() {
 		return patientId;
 	}
+	
+	public Patient(String patientId) {
+        this.patientId = patientId;
+    }
 
 	public void setPatientId(String patientId) {
 		this.patientId = patientId;
