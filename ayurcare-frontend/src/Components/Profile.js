@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import User from "../Assets/henry.jpg"; // Ensure this path is correct
+import User from "../Assets/ayurcareBanner.png"; // Ensure this path is correct
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import Treattable from "./treattable";
 import { ClipLoader } from "react-spinners";
 import { retriveMedicalUserDetails, retriveMedicalRecordDetails } from "../Components/api/AyurcareApiService"; 
+import axios from 'axios';
 
 function Profile() {
   const navigate = useNavigate();
@@ -16,11 +17,13 @@ function Profile() {
   function handleUpdateMedicaluser(medicaluserEmail){
     navigate(`/medicalUserUpdate/${medicaluserEmail}`);
   };
-
+ 
   const [medicalUser, setMedicalUser] = useState({});
   const [medicaluserId, setMedicaluserId] = useState(null);
   const [medicalRecord, setMedicalRecord] = useState([]);
   const [imageUrl, setImageUrl] = useState(null);
+  const username = localStorage.getItem('username');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     refreshMedicalUser();
@@ -33,7 +36,7 @@ function Profile() {
   }, [medicaluserId]);
 
   function refreshMedicalUser() {
-    retriveMedicalUserDetails("jane.smith@example.com")
+    retriveMedicalUserDetails(username,token)
       .then((response) => {
         setMedicalUser(response.data);
         setMedicaluserId(response.data.medicaluserId);
@@ -42,15 +45,35 @@ function Profile() {
   } 
 
   function refreshMedicalRecord(medicaluserId) {
-    retriveMedicalRecordDetails(medicaluserId)
+    const token = localStorage.getItem('token'); // Retrieve the token from local storage
+    retriveMedicalRecordDetails(medicaluserId, token)
       .then((response) => {
         setMedicalRecord(response.data);
         // Assuming each medicalRecord has an image URL you need
         if (response.data.length > 0 && response.data[0].patientId) {
-          setImageUrl(`http://localhost:8080/users/${response.data[0].patientId}/image/download`);
+          fetchImage(response.data[0].patientId);
         }
       })
       .catch((error) => console.log(error));
+  }
+
+  function fetchImage(patientId) {
+    const token = localStorage.getItem('token');
+
+    axios.get(`http://localhost:8080/users/${patientId}/image/download`, {
+      responseType: 'blob',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => {
+        const imageUrl = URL.createObjectURL(response.data);
+        setImageUrl(imageUrl);
+      })
+      .catch((error) => {
+        console.error('Error fetching the image:', error);
+        if (error.response && error.response.status === 401) {
+          console.error('Authentication error: Invalid or expired token');
+        }
+      });
   }
 
   return (

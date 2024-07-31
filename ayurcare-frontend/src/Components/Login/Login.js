@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import basestyle from "../../Styles/Base.module.css";
 import loginstyle from "../../Styles/Login.module.css";
-import axios from "axios";
 import { useNavigate, NavLink } from "react-router-dom";
-import logo from '../../Assets/logo.png'
+import logo from '../../Assets/logo.png';
 import SlideComponent from "../Slider";
-
+import { login } from "../api/AyurcareApiService";
 
 const Login = ({ setUserState }) => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [error, setError] = useState("");
   const [user, setUserDetails] = useState({
-    email: "",
-    password: "",
+    medicaluserEmail: "",
+    medicalUserPassword: "",
   });
 
   const changeHandler = (e) => {
@@ -23,81 +23,90 @@ const Login = ({ setUserState }) => {
       [name]: value,
     });
   };
+
   const validateForm = (values) => {
-    const error = {};
+    const errors = {};
     const regex = /^[^\s+@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.email) {
-      error.email = "Email is required";
-    } else if (!regex.test(values.email)) {
-      error.email = "Please enter a valid email address";
+    if (!values.medicaluserEmail) {
+      errors.medicaluserEmail = "Email is required";
+    } else if (!regex.test(values.medicaluserEmail)) {
+      errors.medicaluserEmail = "Please enter a valid email address";
     }
-    if (!values.password) {
-      error.password = "Password is required";
+    if (!values.medicalUserPassword) {
+      errors.medicalUserPassword = "Password is required";
     }
-    return error;
+    return errors;
   };
 
-  const loginHandler = (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
-    setFormErrors(validateForm(user));
+    const errors = validateForm(user);
+    setFormErrors(errors);
     setIsSubmit(true);
-    // if (!formErrors) {
 
-    // }
+    if (Object.keys(errors).length === 0) {
+      try {
+        const userData = await login(user.medicaluserEmail, user.medicalUserPassword);
+
+        console.log(userData);
+        if (userData.token) {
+          localStorage.setItem('token', userData.token);
+          localStorage.setItem('username', user.medicaluserEmail);
+          setUserState(userData.user);
+          navigate('/');
+        } else {
+          setError(userData.message);
+        }
+      } catch (error) {
+        console.log(error);
+        setError(error.message);
+        setTimeout(() => {
+          setError('');
+        }, 5000);
+      }
+    }
   };
 
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(user);
-      axios.post("http://localhost:9002/login", user).then((res) => {
-        alert(res.data.message);
-        setUserState(res.data.user);
-        navigate("/", { replace: true });
-      });
-    }
-  }, [formErrors]);
   return (
-
-      <div className={loginstyle.logincontainer} >
-        <div style={{position:'absolute',width:'100%' }}><SlideComponent/></div>
-
-
-        <div className={loginstyle.login}>
-
-      <NavLink to="/">
-      <div className="nav-logo">
-        <img src={logo} alt="Logo" />
+    <div className={loginstyle.logincontainer}>
+      <div style={{ position: 'absolute', width: '100%' }}><SlideComponent /></div>
+      <div className={loginstyle.login}>
+        <NavLink to="/">
+          <div className="nav-logo">
+            <img src={logo} alt="Logo" />
+          </div>
+        </NavLink>
+        <form>
+          <input
+            type="email"
+            name="medicaluserEmail"
+            id="medicaluserEmail"
+            placeholder="Email"
+            onChange={changeHandler}
+            value={user.medicaluserEmail}
+          />
+          <p className={basestyle.error}>{formErrors.medicaluserEmail}</p>
+          <input
+            type="password"
+            name="medicalUserPassword"
+            id="medicalUserPassword"
+            placeholder="Password"
+            onChange={changeHandler}
+            value={user.medicalUserPassword}
+          />
+          <p className={basestyle.error}>{formErrors.medicalUserPassword}</p>
+          <button className={basestyle.button_common} onClick={loginHandler}>
+            Login
+          </button>
+        </form>
+        {error && <p className={basestyle.error}>{error}</p>}
+        <NavLink to="/register" style={{ textDecoration: 'none', color: '#000', fontFamily: 'Poppins' }}>
+          Don't you have an account? <span className="lr-link" style={{ color: '#123410', fontWeight: '700' }}>Register Now</span>
+        </NavLink>
       </div>
-    </NavLink>
-      <form>
-
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          onChange={changeHandler}
-          value={user.email}
-        />
-        <p className={basestyle.error}>{formErrors.email}</p>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          onChange={changeHandler}
-          value={user.password}
-        />
-        <p className={basestyle.error}>{formErrors.password}</p>
-        <button className={basestyle.button_common} onClick={loginHandler}>
-          Login
-        </button>
-      </form>
-      <NavLink to="/register" style={{ textDecoration: 'none', color: '#000', fontFamily: 'Poppins'}}>
-        Don't you have an account? <span className="lr-link" style={{color: '#123410', fontWeight: '700' }}>Register Now</span></NavLink>
     </div>
-
-      </div>
   );
 };
+
 export default Login;
+

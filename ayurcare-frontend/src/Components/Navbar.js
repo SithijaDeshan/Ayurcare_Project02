@@ -1,15 +1,24 @@
-// Navbar.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from '../Assets/logo.png';
+import { logout } from "./api/AyurcareApiService";
+import { useNavigate} from "react-router-dom";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check localStorage for username
+    const username = localStorage.getItem('username');
+    setIsLoggedIn(username !== null);
+  }, []);
 
   const openNav = () => {
     setNav(!nav);
@@ -23,6 +32,13 @@ function Navbar() {
         onClose: () => setIsButtonDisabled(false),
       });
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    localStorage.removeItem('username');
+    setIsLoggedIn(false);
+    navigate('/login');
   };
 
   return (
@@ -58,16 +74,26 @@ function Navbar() {
           </a>
         </li>
       </ul>
-      <a href="/login" className="navbar-links">
+      {isLoggedIn ? (
         <button
           className="navbar-btn"
           type="button"
-          disabled={isButtonDisabled}
-          onClick={regLoginBtnClick}
+          onClick={handleLogout}
         >
-          Sign Up
+          Logout
         </button>
-      </a>
+      ) : (
+        <a href="/login" className="navbar-links">
+          <button
+            className="navbar-btn"
+            type="button"
+            disabled={isButtonDisabled}
+            onClick={regLoginBtnClick}
+          >
+            Sign Up
+          </button>
+        </a>
+      )}
 
       {/* Mobile */}
       <div className={`mobile-navbar ${nav ? "open-nav" : ""}`}>

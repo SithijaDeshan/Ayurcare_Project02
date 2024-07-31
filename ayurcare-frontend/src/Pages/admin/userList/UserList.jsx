@@ -7,13 +7,14 @@ import { retriveAllMedicalUsers } from "../../../Components/api/AyurcareApiServi
 
 export default function UserList() {
   const [data, setData] = useState([]);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     retrieveMedicalUsers();
   }, []);
 
   function retrieveMedicalUsers() {
-    retriveAllMedicalUsers()
+    retriveAllMedicalUsers(token)
       .then(response => {
         console.log(response);
         setData(response.data);
@@ -44,7 +45,7 @@ export default function UserList() {
     },
     { field: "medicaluserEmail", headerName: "Email", width: 200 },
     {
-      field: "medicaluserRole", headerName: "Role", width: 120,
+      field: "role", headerName: "Role", width: 120,
     },
     {
       field: "medicaluserPhoneno", headerName: "Phone Number", width: 160,

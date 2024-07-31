@@ -2,23 +2,46 @@ import React, { useState, useEffect } from 'react';
 import '../Styles/tt.css';
 import Modal from './Modal';
 import { retriveMedicalRecordDetails } from './api/AyurcareApiService';
+import axios from 'axios';
 
 const Ttable = ({ medicaluserId }) => {
     const [medicalRecord, setMedicalRecord] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
+    const [images, setImages] = useState({}); // To store fetched images
 
     useEffect(() => {
         refreshMedicalRecord(medicaluserId);
     }, [medicaluserId]);
 
     function refreshMedicalRecord(medicaluserId) {
-        retriveMedicalRecordDetails(medicaluserId)
+        const token = localStorage.getItem('token'); // Retrieve the token from local storage
+        retriveMedicalRecordDetails(medicaluserId, token)
             .then((response) => {
                 setMedicalRecord(response.data);
+                response.data.forEach(record => fetchImage(record));
             })
             .catch((error) => console.log(error));
     }
+
+    const fetchImage = (record) => {
+        const token = localStorage.getItem('token'); // Retrieve the token from local storage
+        const imageUrl = `http://localhost:8080/users/${record.patientId}/${record.medicalRecord}/image/download`;
+
+        axios.get(imageUrl, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            responseType: 'blob'
+        })
+        .then(response => {
+            const url = URL.createObjectURL(response.data);
+            setImages(prevImages => ({ ...prevImages, [record.medicalId]: url }));
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
 
     const handleImageClick = (imageSrc) => {
         setSelectedImage(imageSrc);
@@ -44,12 +67,16 @@ const Ttable = ({ medicaluserId }) => {
                         <tr key={record.medicalId}>
                             <td>{new Date(record.prescriptionIssueDate).toLocaleDateString()}</td>
                             <td>
-                                <img
-                                    src={`http://localhost:8080/users/${record.patientId}/${record.medicalRecord}/image/download`}
-                                    alt="Prescription"
-                                    className="prescription-image"
-                                    onClick={() => handleImageClick(`http://localhost:8080/users/${record.patientId}/${record.medicalRecord}/image/download`)}
-                                />
+                                {images[record.medicalId] ? (
+                                    <img
+                                        src={images[record.medicalId]}
+                                        alt="Prescription"
+                                        className="prescription-image"
+                                        onClick={() => handleImageClick(images[record.medicalId])}
+                                    />
+                                ) : (
+                                    <span>Loading...</span>
+                                )}
                             </td>
                         </tr>
                     ))}
@@ -61,3 +88,5 @@ const Ttable = ({ medicaluserId }) => {
 };
 
 export default Ttable;
+
+

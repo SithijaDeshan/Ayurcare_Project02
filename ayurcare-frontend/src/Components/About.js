@@ -42,7 +42,7 @@ function About() {
 
         <SolutionStep
           title="Choose a Specialist"
-          description="Find your perfect specialist and book with ease at Health Plus. Expert doctors prioritize your health, offering tailored care."
+          description="Find your perfect specialist and book with ease at AyurCare. Expert doctors prioritize your health, offering tailored care."
         />
 
         <SolutionStep

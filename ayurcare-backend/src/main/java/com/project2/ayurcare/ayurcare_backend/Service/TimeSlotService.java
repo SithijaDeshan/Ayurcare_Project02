@@ -125,12 +125,14 @@ public class TimeSlotService {
 		generateTimeSlotsForWeek();
 	}
 	
+	//geting available dates
 	public List<LocalDate> getAllDistinctDatesExceptTodayAndTomorrow() {
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
         return timeSlotRepository.findDistinctDatesExceptTodayAndTomorrow(tomorrow);
     }
 	
+	//getting available timeslots
 	public List<TimeSlotDTO> getAvailableTimeSlots(String category, LocalDate date) {
         List<TimeSlot> availableSlots = timeSlotRepository.findAvailableTimeSlots(category, date);
         return availableSlots.stream()
