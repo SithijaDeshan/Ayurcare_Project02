@@ -20,26 +20,31 @@ import jakarta.persistence.TemporalType;
 public class Payment {
 
 	@Id
-	@Column(name = "payment_id", nullable = false, length = 100)
+	@Column(name = "payment_id")
 	private String paymentId;
 
-	@Column(name = "invoice_id", nullable = false, length = 100)
-	private String invoiceId;
+	@Column(name="razor_id")
+	private String razorpayOrderId;
 
-	@Column(name = "payment_date", nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date paymentDate;
+	@Column(name = "razor_signature")
+	private String razorpaySignature;
 
-	@Column(name = "payment_amount", nullable = false, length = 100)
-	private String paymentAmount;
+	@Column(name = "razor_pay_id")
+	private String razorpayPaymentId;
 
 	@ManyToOne
 	@JoinColumn(name = "medicaluser_id", nullable = false)
 	private Medicaluser medicaluser;
 
-	public Payment() {
-
+	public Payment(String paymentId, String razorpayOrderId, String razorpaySignature, String razorpayPaymentId, Medicaluser medicaluser) {
+		this.paymentId = paymentId;
+		this.razorpayOrderId = razorpayOrderId;
+		this.razorpaySignature = razorpaySignature;
+		this.razorpayPaymentId = razorpayPaymentId;
+		this.medicaluser = medicaluser;
 	}
+
+	public Payment() {}
 
 	public String getPaymentId() {
 		return paymentId;
@@ -49,36 +54,35 @@ public class Payment {
 		this.paymentId = paymentId;
 	}
 
-	public String getInvoiceId() {
-		return invoiceId;
+	public String getRazorpayOrderId() {
+		return razorpayOrderId;
 	}
 
-	public void setInvoiceId(String invoiceId) {
-		this.invoiceId = invoiceId;
+	public void setRazorpayOrderId(String razorpayOrderId) {
+		this.razorpayOrderId = razorpayOrderId;
 	}
 
-	public Date getPaymentDate() {
-		return paymentDate;
+	public String getRazorpaySignature() {
+		return razorpaySignature;
 	}
 
-	public void setPaymentDate(Date paymentDate) {
-		this.paymentDate = paymentDate;
+	public void setRazorpaySignature(String razorpaySignature) {
+		this.razorpaySignature = razorpaySignature;
 	}
 
-	public String getPaymentAmount() {
-		return paymentAmount;
+	public String getRazorpayPaymentId() {
+		return razorpayPaymentId;
 	}
 
-	public void setPaymentAmount(String paymentAmount) {
-		this.paymentAmount = paymentAmount;
+	public void setRazorpayPaymentId(String razorpayPaymentId) {
+		this.razorpayPaymentId = razorpayPaymentId;
 	}
 
-	public Medicaluser getUser() {
+	public Medicaluser getMedicaluser() {
 		return medicaluser;
 	}
 
-	public void setUser(Medicaluser medicaluser) {
+	public void setMedicaluser(Medicaluser medicaluser) {
 		this.medicaluser = medicaluser;
 	}
-
 }

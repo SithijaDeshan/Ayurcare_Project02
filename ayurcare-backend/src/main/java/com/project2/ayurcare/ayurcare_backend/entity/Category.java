@@ -17,20 +17,20 @@ import jakarta.persistence.Table;
 public class Category {
 
 	@Id
-    @Column(name = "category_id", nullable = false, length = 10)
-    private String categoryId;
+	@Column(name = "category_id", nullable = false, length = 10)
+	private String categoryId;
 
-    @Column(name = "predefined_time", nullable = false, length = 100)
-    private String predefinedTime;
+	@Column(name = "predefined_time", nullable = false, length = 100)
+	private String predefinedTime;
 
-    @Column(name = "categories", nullable = false, length = 200)
-    private String categories;
+	@Column(name = "categories", nullable = false, length = 200)
+	private String categories;
 
-    @OneToMany(mappedBy = "category")
-    private List<Patient> patients;
-    
-    @OneToMany(mappedBy = "category")
-    private List<TimeSlot> timeSlots;
+	@OneToMany(mappedBy = "category")
+	private List<Patient> patients;
+
+	@OneToMany(mappedBy = "category")
+	private List<TimeSlot> timeSlots;
 
 	public Category() {
 
@@ -67,7 +67,7 @@ public class Category {
 	public void setPatients(List<Patient> patients) {
 		this.patients = patients;
 	}
-    
-	
-    
+
+
+
 }

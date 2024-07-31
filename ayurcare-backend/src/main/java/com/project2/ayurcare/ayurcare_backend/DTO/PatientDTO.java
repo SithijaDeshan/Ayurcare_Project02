@@ -8,7 +8,6 @@ public class PatientDTO {
     private String medicaluser;
     private String category;
     private Date treatmentStartDate;
-    private String duration;
 
     // Getters and setters
     public String getPatientId() {
@@ -26,14 +25,6 @@ public class PatientDTO {
 
     public void setTreatmentStartDate(Date treatmentStartDate) {
         this.treatmentStartDate = treatmentStartDate;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
     }
 
 	public String getMedicaluser() {

@@ -1,5 +1,6 @@
 package com.project2.ayurcare.ayurcare_backend.entity.listener;
 
+import com.project2.ayurcare.ayurcare_backend.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,5 +23,7 @@ public class UserEntityListener {
 		if (medicaluser.getMedicaluserId() == null || medicaluser.getMedicaluserId().isEmpty()) {
 			medicaluser.setMedicaluserId(idGenerator.generateId("ACU", "Medicaluser", "medicaluserId"));
 		}
+
 	}
+
 }

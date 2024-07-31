@@ -1,49 +1,51 @@
 package com.project2.ayurcare.ayurcare_backend.entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.project2.ayurcare.ayurcare_backend.entity.listener.UserEntityListener;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "medicaluser")
 @EntityListeners(UserEntityListener.class)
-public class Medicaluser {
+public class Medicaluser implements UserDetails{
+
 
 	@Id
-	@Column(name = "medicaluser_id", nullable = false, length = 100)
+	@Column(name = "medicaluser_id")
 	private String medicaluserId;
 
-	@Column(name = "medicaluser_firstname", nullable = false, length = 100)
+	@Column(name = "medicaluser_firstname")
 	private String medicaluserFirstname;
 
-	@Column(name = "medicaluser_lastname", nullable = false, length = 100)
+	@Column(name = "medicaluser_lastname")
 	private String medicaluserLastname;
 
-	@Column(name = "medicaluser_email", nullable = false, length = 255)
+	@Column(name = "medicaluser_email")
 	private String medicaluserEmail;
 
-	@Column(name = "medicaluser_phoneno", nullable = false, length = 10)
+	@Column(name="medicaluser_password")
+	private String medicalUserPassword;
+
+	@Column(name = "medicaluser_phoneno")
 	private String medicaluserPhoneno;
 
 	@Lob
-	@Column(name = "medicaluser_photo", nullable = true)
+	@Column(name = "medicaluser_photo")
 	private byte[] medicaluserPhoto;
 
-	@Column(name = "medicaluser_address", nullable = false, length = 255)
+	@Column(name = "medicaluser_address")
 	private String medicaluserAddress;
 
-	@Column(name = "medicaluser_role", nullable = false, length = 255)
-	private String medicaluserRole = "Patient";
+	@Enumerated(value = EnumType.STRING)
+	Role role;
 
-	@Column(name = "medicaluser_Intreatment", nullable = false, length = 5)
+	@Column(name = "medicaluser_Intreatment")
 	private String medicaluserIntreatment;
 
 	@OneToMany(mappedBy = "medicaluser")
@@ -52,25 +54,27 @@ public class Medicaluser {
 	@OneToMany(mappedBy = "medicaluser")
 	private List<Payment> payments;
 
+	@OneToMany(mappedBy = "medicaluser")
+	private List<Token> tokens;
+
 	public Medicaluser() {
 
 	}
 
-	public Medicaluser(String medicaluserId, String medicaluserFirstname, String medicaluserLastname,
-			String medicaluserEmail, String medicaluserPhoneno, byte[] medicaluserPhoto, String medicaluserAddress,
-			String medicaluserRole, String medicaluserIntreatment, List<Patient> patients, List<Payment> payments) {
-		super();
+	public Medicaluser(String medicaluserId, String medicaluserFirstname, String medicaluserLastname, String medicaluserEmail, String medicalUserPassword, String medicaluserPhoneno, byte[] medicaluserPhoto, String medicaluserAddress, Role role, String medicaluserIntreatment, List<Patient> patients, List<Payment> payments, List<Token> tokens) {
 		this.medicaluserId = medicaluserId;
 		this.medicaluserFirstname = medicaluserFirstname;
 		this.medicaluserLastname = medicaluserLastname;
 		this.medicaluserEmail = medicaluserEmail;
+		this.medicalUserPassword = medicalUserPassword;
 		this.medicaluserPhoneno = medicaluserPhoneno;
 		this.medicaluserPhoto = medicaluserPhoto;
 		this.medicaluserAddress = medicaluserAddress;
-		this.medicaluserRole = medicaluserRole;
+		this.role = role;
 		this.medicaluserIntreatment = medicaluserIntreatment;
 		this.patients = patients;
 		this.payments = payments;
+		this.tokens = tokens;
 	}
 
 	public String getMedicaluserId() {
@@ -129,14 +133,6 @@ public class Medicaluser {
 		this.medicaluserAddress = medicaluserAddress;
 	}
 
-	public String getMedicaluserRole() {
-		return medicaluserRole;
-	}
-
-	public void setMedicaluserRole(String medicaluserRole) {
-		this.medicaluserRole = medicaluserRole;
-	}
-
 	public String getMedicaluserIntreatment() {
 		return medicaluserIntreatment;
 	}
@@ -161,6 +157,62 @@ public class Medicaluser {
 		this.payments = payments;
 	}
 
-	
+	public String getMedicalUserPassword() {
+		return medicalUserPassword;
+	}
 
+	public void setMedicalUserPassword(String medicalUserPassword) {
+		this.medicalUserPassword = medicalUserPassword;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public List<Token> getTokens() {
+		return tokens;
+	}
+
+	public void setTokens(List<Token> tokens) {
+		this.tokens = tokens;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority(role.name()));
+	}
+
+	@Override
+	public String getPassword() {
+		return medicalUserPassword;
+	}
+
+	@Override
+	public String getUsername() {
+		return medicaluserEmail;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }
