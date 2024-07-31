@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,6 +25,9 @@ import NewUser from "./Pages/admin/newUser/NewUser"
 import PredictionComponent from "./Components/PredictionComponent"
 
 function App() {
+
+  const [userState, setUserState] = useState(null);
+
   return (
     <div className="App">
       <Router>
@@ -33,7 +36,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/image" element={<ImageUpload />} />
           <Route path="/legal" element={<Legal />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setUserState={setUserState} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/doctors" element={<Doctors />} />

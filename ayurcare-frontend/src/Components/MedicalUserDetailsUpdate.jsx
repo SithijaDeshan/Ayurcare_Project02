@@ -18,13 +18,14 @@ export default function MedicalUserDetailsUpdate() {
   const [medicaluserIntreatment, setMedicaluserIntreatment] = useState("");
   const { medicaluserEmail } = useParams();
   const navigate = useNavigate()
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
     RetrieveMedicaluser(medicaluserEmail);
   }, [medicaluserEmail]);
 
   function RetrieveMedicaluser(medicaluserEmail) {
-    retriveMedicalUserDetails(medicaluserEmail)
+    retriveMedicalUserDetails(medicaluserEmail,token)
       .then((response) => {
         setMedicalUser(response.data);
         setMedicalUserId(response.data.medicaluserId)

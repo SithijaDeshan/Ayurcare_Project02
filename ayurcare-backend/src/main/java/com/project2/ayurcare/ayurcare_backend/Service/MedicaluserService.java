@@ -69,7 +69,6 @@ public class MedicaluserService {
         existingUser.setMedicaluserPhoneno(medicaluserDTO.getMedicaluserPhoneno());
         existingUser.setMedicaluserPhoto(medicaluserDTO.getMedicaluserPhoto());
         existingUser.setMedicaluserAddress(medicaluserDTO.getMedicaluserAddress());
-        existingUser.setMedicaluserRole(medicaluserDTO.getMedicaluserRole());
         existingUser.setMedicaluserIntreatment(medicaluserDTO.getMedicaluserIntreatment());
         
         // Save the updated user

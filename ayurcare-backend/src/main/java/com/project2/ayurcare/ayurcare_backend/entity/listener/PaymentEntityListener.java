@@ -22,8 +22,5 @@ public class PaymentEntityListener {
         if (payment.getPaymentId() == null || payment.getPaymentId().isEmpty()) {
             payment.setPaymentId(idGenerator.generateId("ACP", "Payment", "paymentId"));
         }
-        if (payment.getInvoiceId() == null || payment.getInvoiceId().isEmpty()) {
-            payment.setInvoiceId(idGenerator.generateId("#ACI", "Payment", "invoiceId"));
-        }
     }
 }

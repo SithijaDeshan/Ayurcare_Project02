@@ -37,14 +37,19 @@ public class Patient {
     @Temporal(TemporalType.DATE)
     private Date treatmentStartDate;
 
-    @Column(name = "duration", nullable = false, length = 100)
-    private String duration;
-
     @OneToMany(mappedBy = "patient")
     private List<MedicalRecord> medicalRecords;
 
 	public Patient() {
 
+	}
+
+	public Patient(String patientId, Medicaluser medicaluser, Category category, Date treatmentStartDate, List<MedicalRecord> medicalRecords) {
+		this.patientId = patientId;
+		this.medicaluser = medicaluser;
+		this.category = category;
+		this.treatmentStartDate = treatmentStartDate;
+		this.medicalRecords = medicalRecords;
 	}
 
 	public String getPatientId() {
@@ -81,14 +86,6 @@ public class Patient {
 
 	public void setTreatmentStartDate(Date treatmentStartDate) {
 		this.treatmentStartDate = treatmentStartDate;
-	}
-
-	public String getDuration() {
-		return duration;
-	}
-
-	public void setDuration(String duration) {
-		this.duration = duration;
 	}
 
 	public List<MedicalRecord> getMedicalRecords() {

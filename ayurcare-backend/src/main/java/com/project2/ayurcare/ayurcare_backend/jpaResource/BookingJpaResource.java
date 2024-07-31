@@ -12,6 +12,8 @@ import com.project2.ayurcare.ayurcare_backend.DTO.BookingDTO;
 import com.project2.ayurcare.ayurcare_backend.DTO.PatientDTO;
 import com.project2.ayurcare.ayurcare_backend.Service.BookingSerrvice;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/booking")
 public class BookingJpaResource {
@@ -28,4 +30,5 @@ public class BookingJpaResource {
 	private PatientDTO patientInfo(@PathVariable String medicaluserId) {
 		return bookingService.retrievePatientByMedicaluserId(medicaluserId);
 	}
+
 }

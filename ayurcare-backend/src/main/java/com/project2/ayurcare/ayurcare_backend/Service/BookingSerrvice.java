@@ -28,7 +28,7 @@ public class BookingSerrvice {
 
     @Autowired
     TimeSlotRepository timeSlotRepository;
-    
+
     @Autowired
     PatientRepository patientRepository;
 
@@ -65,16 +65,16 @@ public class BookingSerrvice {
      // Return the booking DTO
         return modelMapper.map(booking, BookingDTO.class);
     }
-    
+
     public PatientDTO retrievePatientByMedicaluserId(String medicaluserId) {
         // Find the patient by the medicaluserId
         Optional<Patient> patientOpt = patientRepository.findByMedicaluserMedicaluserId(medicaluserId);
-        
+
         if (patientOpt.isPresent()) {
             return modelMapper.map(patientOpt.get(), PatientDTO.class);
         } else {
             throw new RuntimeException("Patient not found for medical user ID: " + medicaluserId);
         }
     }
-    
+
 }
