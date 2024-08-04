@@ -49,7 +49,7 @@ export default function MedicalUserDetailsUpdate() {
       medicaluserIntreatment: medicaluserIntreatment
       }
 
-      updateMedicalUserDetails(medicalUserId, medicaluserDetails)
+      updateMedicalUserDetails(medicalUserId, medicaluserDetails,token)
         .then(response =>{
           navigate('/profile')
         })

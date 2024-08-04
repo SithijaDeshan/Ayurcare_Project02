@@ -63,7 +63,7 @@ function AdminLayout() {
         <Routes>
           <Route path="/" element={<AdminHome />} />
           <Route path="users" element={<UserList />} />
-          <Route path="user/:userId" element={<User />} />
+          <Route path="user/:medicaluserEmail" element={<User />} />
           <Route path="newuser" element={<NewUser />} />
           
         </Routes>
