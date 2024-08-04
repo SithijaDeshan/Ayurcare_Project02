@@ -3,6 +3,8 @@ package com.project2.ayurcare.ayurcare_backend.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.project2.ayurcare.ayurcare_backend.entity.Token;
+import com.project2.ayurcare.ayurcare_backend.repository.TokenRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,17 +23,25 @@ public class MedicaluserService {
     @Autowired
     private ModelMapper modelMapperConfig;
 
+    @Autowired
+    private TokenRepository tokenRepository;
+
+
     public List<MedicaluserDTO> getAllUsers() {
         return medicalUserRepository.findAll().stream()
                 .map(user -> modelMapperConfig.map(user, MedicaluserDTO.class))
                 .collect(Collectors.toList());
     }
 
+
+
     public MedicaluserDTO getUserById(String medicalId) {
         Medicaluser medicaluser = medicalUserRepository.findById(medicalId)
                 .orElseThrow(() -> new ResourceNotFoundException("Medical user not found with id: " + medicalId));
         return modelMapperConfig.map(medicaluser, MedicaluserDTO.class);
     }
+
+
     
     public MedicaluserDTO getUserByEmail(String medicaluserEmail) {
         Medicaluser medicaluser = medicalUserRepository.getUserByEmail(medicaluserEmail);
@@ -48,16 +58,8 @@ public class MedicaluserService {
         return modelMapperConfig.map(savedUser, MedicaluserDTO.class);
     }
 
-//    public MedicaluserDTO updateUser(String medicalId, MedicaluserDTO medicaluserDTO) {
-//        Medicaluser existingUser = medicalUserRepository.findById(medicalId)
-//                .orElseThrow(() -> new ResourceNotFoundException("Medical user not found with id: " + medicalId));
-//        // Update the fields of the existing user with DTO data
-//        modelMapperConfig.map(medicaluserDTO, existingUser);
-//        // Save the updated user
-//        Medicaluser updatedUser = medicalUserRepository.save(existingUser);
-//        return modelMapperConfig.map(updatedUser, MedicaluserDTO.class);
-//    }
-    
+
+
     public MedicaluserDTO updateUser(String medicalId, MedicaluserDTO medicaluserDTO) {
         Medicaluser existingUser = medicalUserRepository.findById(medicalId)
                 .orElseThrow(() -> new ResourceNotFoundException("Medical user not found with id: " + medicalId));
@@ -78,6 +80,17 @@ public class MedicaluserService {
 
 
     public void deleteUser(String medicalId) {
-        medicalUserRepository.deleteById(medicalId);
+        // Find the Medicaluser entity
+        Medicaluser medicaluser = medicalUserRepository.findById(medicalId)
+                .orElseThrow(() -> new ResourceNotFoundException("Medical user not found with id: " + medicalId));
+
+        // Delete associated tokens
+        List<Token> tokens = tokenRepository.findAllTokenByUser(medicalId);
+        if (tokens != null && !tokens.isEmpty()) {
+            tokenRepository.deleteAll(tokens);
+        }
+
+        // Delete the user
+        medicalUserRepository.delete(medicaluser);
     }
 }

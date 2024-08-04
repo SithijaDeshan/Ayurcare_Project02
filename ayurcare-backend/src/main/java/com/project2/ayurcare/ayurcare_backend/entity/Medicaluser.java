@@ -54,7 +54,7 @@ public class Medicaluser implements UserDetails{
 	@OneToMany(mappedBy = "medicaluser")
 	private List<Payment> payments;
 
-	@OneToMany(mappedBy = "medicaluser")
+	@OneToMany(mappedBy = "medicaluser", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Token> tokens;
 
 	public Medicaluser() {

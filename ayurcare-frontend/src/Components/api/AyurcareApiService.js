@@ -14,8 +14,16 @@ export const retriveMedicalUserDetails = (medicaluserEmail,token) => {
     });
 };
 
-export const updateMedicalUserDetails = (medicaluserId, medicaluserDetails) => {
+export const updateMedicalUserDetails = (medicaluserId, medicaluserDetails,token) => {
     return apiClient.put(`/users/update/${medicaluserId}`,medicaluserDetails, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
+};
+
+
+
+export const deleteMedicalUserDetails = (medicaluserId,token) => {
+    return apiClient.delete(`/users/delete/${medicaluserId}`, {
         headers: { Authorization: `Bearer ${token}` }
     })
 };

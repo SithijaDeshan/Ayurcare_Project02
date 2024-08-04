@@ -1,13 +1,15 @@
 import React from "react";
 import "./topbar.css";
 import { NotificationsNone, Language, Settings } from "@mui/icons-material";
+import logo from '../../../Assets/logo.png'
 
 export default function Topbar() {
   return (
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">lamaadmin</span>
+          {/*<span className="logo">lamaadmin</span>*/}
+          <span className="logo"><img src={logo} alt="logo"/></span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
