@@ -37,6 +37,8 @@ function Navbar() {
   const handleLogout = () => {
     logout();
     localStorage.removeItem('username');
+    localStorage.removeItem('patientId');
+    localStorage.removeItem('userid');
     setIsLoggedIn(false);
     navigate('/login');
   };

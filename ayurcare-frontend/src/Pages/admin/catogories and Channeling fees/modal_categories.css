@@ -1,0 +1,93 @@
+/* Modal overlay with a smooth fade-in effect */
+.mn_modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    z-index: 9999;
+}
+
+/* Modal content with smooth slide-in effect */
+.mn_modal_content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideUp 0.3s forwards;
+    z-index: 10000;
+}
+
+/* Modal message text styling */
+.mn_modal_content p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+/* Modern button styles */
+.mn_modal_confirm, .mn_modal_cancel {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+    min-width: 120px;
+}
+
+.mn_modal_confirm {
+    background-color: #4CAF50; /* Modern green */
+    color: white;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.mn_modal_confirm:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.mn_modal_cancel {
+    background-color: #f44336; /* Modern red */
+    color: white;
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.mn_modal_cancel:hover {
+    background-color: #e53935;
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

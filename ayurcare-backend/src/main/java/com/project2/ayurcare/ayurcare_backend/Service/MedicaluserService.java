@@ -1,5 +1,6 @@
 package com.project2.ayurcare.ayurcare_backend.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,5 +93,26 @@ public class MedicaluserService {
 
         // Delete the user
         medicalUserRepository.delete(medicaluser);
+    }
+
+    // Geting the all registered useres whose role == USER
+
+    public int registeredPatientCount(){
+        try {
+            return medicalUserRepository.countUsersByRole();
+        }catch (Exception e){
+            throw new ResourceNotFoundException("Patient count not found");
+        }
+    }
+
+    public List<MedicaluserDTO> lastFiveUsers() throws Exception {
+        try{List<Medicaluser> medicalusers = medicalUserRepository.findLast5UsersByRole();
+            return medicalusers.stream()
+                    .map(user -> modelMapperConfig.map(user, MedicaluserDTO.class))
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
     }
 }

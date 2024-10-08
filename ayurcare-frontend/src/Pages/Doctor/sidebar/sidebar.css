@@ -1,0 +1,104 @@
+.sidebar {
+  flex: 1;
+  height: calc(100vh - 50px);
+  background-color: #f5f7fa;
+  position: sticky;
+  padding-top: 50px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar:hover {
+  background-color: #eef1f5;
+}
+
+.sidebarWrapper {
+  padding: 30px 20px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sidebarMenu {
+  margin-bottom: 20px;
+}
+
+.sidebarTitle {
+  font-size: 20px;
+  color: #6c757d;
+  margin-bottom: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.sidebarList {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebarListItem {
+  padding: 12px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebarListItem.active,
+.sidebarListItem:hover {
+  background-color: #dfe4ea;
+  color: #1e90ff;
+}
+
+.sidebarIcon {
+  margin-right: 10px;
+  font-size: 22px !important;
+  color: #495057;
+  transition: color 0.3s ease;
+}
+
+.sidebarListItem.active .sidebarIcon,
+.sidebarListItem:hover .sidebarIcon {
+  color: #1e90ff;
+}
+
+.sidebarProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.sidebarProfileImg {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.sidebarProfileImg:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.notificationDot {
+  width: 10px;
+  height: 10px;
+  background-color: #00ff00; /* Luminous green color */
+  border-radius: 50%;
+  margin-left: auto;
+  box-shadow: 0 0 10px #00ff00; /* Glowing effect */
+}
+
+.notificationBulb {
+  width: 10px;
+  height: 10px;
+  background-color: #00ff00; /* Luminous green color */
+  border-radius: 50%;
+  margin-left: auto;
+  box-shadow: 0 0 10px #00ff00; /* Glowing effect */
+}

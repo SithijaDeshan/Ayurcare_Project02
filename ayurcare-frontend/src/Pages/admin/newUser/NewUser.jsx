@@ -245,7 +245,6 @@ export default function NewUser() {
               <option value="ADMIN">ADMIN</option>
             </select>
           </div>
-
           <button className="newUserButton">Create</button>
         </form>
         <ToastContainer />

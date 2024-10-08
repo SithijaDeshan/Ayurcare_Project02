@@ -1,0 +1,152 @@
+.videoCallPage {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.videoCallBanner {
+    position: relative;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.videoCallBannerImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contentArea {
+    padding: 20px;
+    background-color: #f9f9f9; /* Adjust as needed */
+}
+
+.transactionWidget {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contentArea {
+    position: relative;
+    top: -80px; /* This is 20% of the 300px banner height */
+    background-color: white; /* Adjust this color as needed */
+    /*box-shadow: 0px -10px 20px rgba(0, 0, 0, 0.1);*/
+    border-radius: 20px 20px 0 0;
+    z-index: 1;
+    padding: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+@media (max-width: 768px) {
+    .videoCallPage {
+        height: 200px; /* Adjust for smaller screens */
+    }
+
+    .contentArea {
+        top: -40px; /* Adjust for smaller screens */
+    }
+}
+
+.transactionWidget {
+    padding: 20px;
+}
+
+.transactionTitle {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.transactionTable {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.transactionHeader {
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    padding: 10px;
+}
+
+.transactionRow {
+    border-bottom: 1px solid #eee;
+}
+
+.transactionUser {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.transactionUserImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.transactionUserName {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.transactionCategory, .transactionTimeSlot {
+    font-weight: 500;
+    color: #555;
+    padding: 10px;
+}
+
+.statusButton {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.statusButton.Proceed {
+    background-color: #e5faf2; /* Light green background */
+    color: #3bb077; /* Green text */
+}
+
+.statusButton.Proceed:hover {
+    background-color: #b2f0e5; /* Slightly darker green on hover */
+    color: #2e8b57; /* Darker green text on hover */
+}
+
+.statusButton.Done {
+    background-color: #ffe5e5; /* Light red background */
+    color: #ff4d4d; /* Red text */
+}
+
+.statusButton.Done:hover {
+    background-color: #ffcccc; /* Slightly darker red on hover */
+    color: #cc0000; /* Darker red text on hover */
+}
+
+
+.proceedButton {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e0f7fa; /* Light cyan background */
+    color: #00796b; /* Dark cyan text */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.proceedButton:hover {
+    background-color: #b2ebf2; /* Slightly darker cyan on hover */
+    color: #004d40; /* Darker text color on hover */
+}

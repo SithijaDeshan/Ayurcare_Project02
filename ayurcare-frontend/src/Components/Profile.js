@@ -10,6 +10,11 @@ import Treattable from "./treattable";
 import { ClipLoader } from "react-spinners";
 import { retriveMedicalUserDetails, retriveMedicalRecordDetails } from "../Components/api/AyurcareApiService"; 
 import axios from 'axios';
+import ProfileCard from "./ProfileCards/ProfileCard";
+import VideoCallCard from "./ProfileCards/VideoCallCard"
+import './ProfileCards/ProfileCard.css'
+import image1 from '../Assets/profile/1.jpg'
+import videocall from '../Assets/profile/videocall.jpg'
 
 function Profile() {
   const navigate = useNavigate();
@@ -40,6 +45,7 @@ function Profile() {
       .then((response) => {
         setMedicalUser(response.data);
         setMedicaluserId(response.data.medicaluserId);
+        localStorage.setItem('userid', response.data.medicaluserId);
       })
       .catch((error) => console.log(error));
   } 
@@ -112,6 +118,31 @@ function Profile() {
           <img src={imageUrl ? imageUrl : User} alt="Medical User" className="ba-image1" />
         </div>
       </div>
+
+
+      <div className="profile_body">
+        <div className="profile_wrapper">
+          <div className="profile_services">
+            <VideoCallCard
+                title="Request Video Call"
+                description="If you are unable to attend, you can change booking to a video conference."
+                backgroundImage={videocall}
+            />
+            <ProfileCard
+                title="Nikon 3458"
+                description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam."
+                backgroundImage={image1} // Update with the correct image URL
+            />
+            <ProfileCard
+                title="Sony 1234"
+                description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam."
+                backgroundImage={image1} // Update with the correct image URL
+            />
+          </div>
+        </div>
+      </div>
+
+
 
       <div className="treattable-container">
         <Treattable medicaluserId={medicalUser.medicaluserId} />

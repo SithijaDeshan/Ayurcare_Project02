@@ -86,4 +86,8 @@ public class PaymentService {
         }
     }
 
+    public int countAllPayment() {
+        return paymentRepository.countAllPayment();
+    }
+
 }

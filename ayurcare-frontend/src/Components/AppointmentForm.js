@@ -280,7 +280,7 @@ function AppointmentForm() {
         const amount1 = 100;
 
         try {
-            const transactionResponse = await payment(amount1);
+            const transactionResponse = await payment(amount1 , token);
             const {orderId, currency, amount, key} = transactionResponse;
             const options = {
                 key: key,
@@ -312,7 +312,7 @@ function AppointmentForm() {
                             razorpaySignature: response.razorpay_signature,
                         };
 
-                        paymentDetails(paymentPayload);
+                        paymentDetails(paymentPayload, token);
 
                         // Call retrivePatientDetails after the success toast
                         const patientDetailsResponse = await retrivePatientDetails(

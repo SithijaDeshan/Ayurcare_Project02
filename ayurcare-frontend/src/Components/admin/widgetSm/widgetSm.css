@@ -1,4 +1,4 @@
-.widgetSm{
+.widgetSm {
     flex: 1;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
@@ -6,45 +6,47 @@
     margin-right: 20px;
 }
 
-.widgetSmTitle{
+.widgetSmTitle {
     font-size: 22px;
     font-weight: 600;
 }
 
-.widgetSmImg{
+.widgetSmImg {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.widgetSmList{
+.widgetSmList {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.widgetSmListItem{
+.widgetSmListItem {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 20px 0px;
 }
 
-.widgetSmUser{
+.widgetSmUser {
     display: flex;
     flex-direction: column;
+    margin-left: 10px; /* Add margin to separate from the image */
+    flex-grow: 1;
 }
 
-.widgetSmUsername{
+.widgetSmUsername {
     font-weight: 600;
 }
 
-.widgetSmUserTitle{
+.widgetSmUserTitle {
     font-weight: 300;
 }
 
-.widgetSmButton{
+.widgetSmButton {
     display: flex;
     align-items: center;
     border: none;
@@ -55,7 +57,102 @@
     cursor: pointer;
 }
 
-.widgetSmIcon{
+.widgetSmIcon {
     font-size: 16px !important;
     margin-right: 5px;
 }
+
+.userModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    text-align: center;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.userModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.modalImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.modalImg:hover {
+    transform: scale(1.05);
+}
+
+.modalUsername {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 10px 0;
+}
+
+.modalUserEmail {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.modalUserInfo {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.closeModalButton {
+    padding: 12px 24px;
+    border: none;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.closeModalButton:hover {
+    background-color: #ff4d4d;
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

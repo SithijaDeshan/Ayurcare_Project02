@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Modal from 'react-modal';
 import "./modal.css";
 import "../../../Styles/customToast.css";
+import user_default from "../../../Assets/user_default.png"
 
 export default function UserList() {
   const [data, setData] = useState([]);
@@ -80,7 +81,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => (
           <div className="userListUser">
-            <img className="userListImg" src={params.row.medicaluserPhoto || "/path/to/default-avatar.png"} alt="" />
+            <img className="userListImg" src={params.row.medicaluserPhoto || user_default} alt="" />
             {params.row.medicaluserFirstname} {params.row.medicaluserLastname}
           </div>
       ),

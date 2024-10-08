@@ -19,10 +19,15 @@ import MedicalUserDetailsUpdate from "./Components/MedicalUserDetailsUpdate";
 import AdminHome from "./Pages/admin/home/AdminHome";
 import Topbar from "./Components/admin/topbar/Topbar";
 import Sidebar from "./Components/admin/sidebar/Sidebar";
+import DoctorSidebar from "./Pages/Doctor/sidebar/DoctorSidebar";
 import User from "./Pages/admin/user/User"
 import UserList from "./Pages/admin/userList/UserList"
 import NewUser from "./Pages/admin/newUser/NewUser"
 import PredictionComponent from "./Components/PredictionComponent"
+import Bookings from "./Pages/Doctor/home/Bookings";
+import VideoCAll from "./Pages/Doctor/VideoCall/VideoCall";
+import Prescription from "./Pages/Doctor/Prescription/Prescription";
+import Categories from "./Pages/admin/catogories and Channeling fees/Categories";
 
 function App() {
 
@@ -48,6 +53,7 @@ function App() {
 
           {/* Admin routes */}
           <Route path="/admin/*" element={<AdminLayout />} />
+          <Route path="/doctor/*" element={<DoctorLayout />} />
         </Routes>
       </Router>
     </div>
@@ -65,11 +71,30 @@ function AdminLayout() {
           <Route path="users" element={<UserList />} />
           <Route path="user/:medicaluserEmail" element={<User />} />
           <Route path="newuser" element={<NewUser />} />
+          <Route path="categories" element={<Categories />} />
           
         </Routes>
       </div>
     </div>
   );
 }
+
+function DoctorLayout() {
+  return (
+      <div className="admin-layout">
+        <Topbar />
+        <div className="container">
+          <DoctorSidebar />
+          <Routes>
+            <Route path="/" element={<Bookings />} />
+            <Route path="/videocall" element={<VideoCAll />} />
+            <Route path="/prescription" element={<Prescription />} />
+          </Routes>
+        </div>
+      </div>
+  );
+}
+
+
 
 export default App;

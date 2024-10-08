@@ -1,0 +1,24 @@
+.prescription{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.pressBanner {
+    position: relative;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.pressBannerImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .pressBanner {
+        height: 200px; /* Adjust for smaller screens */
+    }
+}

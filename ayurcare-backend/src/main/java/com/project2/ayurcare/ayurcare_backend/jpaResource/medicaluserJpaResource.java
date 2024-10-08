@@ -53,4 +53,14 @@ public class medicaluserJpaResource {
 	    public MedicaluserDTO updateUser(@PathVariable String medical_id, @RequestBody MedicaluserDTO medicaluserDTO) {
 	        return medicaluserService.updateUser(medical_id, medicaluserDTO);
 	    }
+
+		@GetMapping("/registered/USERcount")
+		public int registeredUserCount() {
+			return medicaluserService.registeredPatientCount();
+		}
+
+		@GetMapping("/lastFiveUsers")
+		public List<MedicaluserDTO> lastFiveUsers() throws Exception {
+			return medicaluserService.lastFiveUsers();
+		}
 }
