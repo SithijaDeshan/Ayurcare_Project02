@@ -39,36 +39,6 @@ public class BookingSerrvice {
     @Autowired
     ModelMapper modelMapper;
 
-//    public BookingDTO appointment(BookingDTO bookingDTO) {
-//    	// Lock the time slot to prevent concurrent access
-//        TimeSlot timeSlot = timeSlotRepository.findByIdWithLock(bookingDTO.getTimeSlotId())
-//                .orElseThrow(() -> new RuntimeException("Time slot not found"));
-//
-//     // Check if the time slot is already booked
-//        if (timeSlot.isBooked()) {
-//            throw new RuntimeException("Time slot already booked");
-//        }
-//
-//     // Check if the patient has already booked a time slot on the same date
-//        LocalDate bookingDate = timeSlot.getDate();
-//        List<Booking> existingBookings = bookingRepository.findByPatientIdAndDate(bookingDTO.getPatientId(), bookingDate);
-//
-//        if (!existingBookings.isEmpty()) {
-//            throw new RuntimeException("Patient has already booked a time slot on this date");
-//        }
-//
-//     // Mark the time slot as booked
-//        timeSlot.setBooked(true);
-//        timeSlotRepository.save(timeSlot);
-//
-//     // Create the booking
-//        Booking createBooking = modelMapper.map(bookingDTO, Booking.class);
-//        createBooking.setTimeSlotId(timeSlot);
-//        Booking booking = bookingRepository.save(createBooking);
-//
-//     // Return the booking DTO
-//        return modelMapper.map(booking, BookingDTO.class);
-//    }
 
     public BookingDTO appointment(BookingDTO bookingDTO) {
         // Lock the time slot to prevent concurrent access

@@ -13,4 +13,6 @@ public interface PatientRepository extends JpaRepository<Patient, String>{
 	@Query("SELECT COUNT(p) FROM Patient p")
 	int countAllPatients();
 
+	Patient findByPatientId(String patientId);
+
 }

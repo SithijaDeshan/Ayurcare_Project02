@@ -4,7 +4,7 @@ import loginstyle from "../../Styles/Login.module.css";
 import { useNavigate, NavLink } from "react-router-dom";
 import logo from '../../Assets/logo.png';
 import SlideComponent from "../Slider";
-import { login } from "../api/AyurcareApiService";
+import {login, retriveMedicalUserDetails} from "../api/AyurcareApiService";
 
 const Login = ({ setUserState }) => {
   const navigate = useNavigate();
@@ -48,12 +48,25 @@ const Login = ({ setUserState }) => {
       try {
         const userData = await login(user.medicaluserEmail, user.medicalUserPassword);
 
-        console.log(userData);
         if (userData.token) {
+
+          const roleBased = await retriveMedicalUserDetails(user.medicaluserEmail, userData.token)
+          console.log(roleBased.data.role)
           localStorage.setItem('token', userData.token);
           localStorage.setItem('username', user.medicaluserEmail);
+          localStorage.setItem('role', roleBased.data.role)
+
           setUserState(userData.user);
-          navigate('/');
+          // navigate('/');
+          if (roleBased.data.role === 'USER') {
+            navigate('/');
+          } else if (roleBased.data.role === 'ADMIN') {
+            navigate('/admin');
+          } else if (roleBased.data.role === 'DOCTOR') {
+            navigate('/doctor');
+          } else if (roleBased.data.role === 'OPERATOR') {
+            navigate('/inventory');
+          }
         } else {
           setError(userData.message);
         }
@@ -68,45 +81,44 @@ const Login = ({ setUserState }) => {
   };
 
   return (
-    <div className={loginstyle.logincontainer}>
-      <div style={{ position: 'absolute', width: '100%' }}><SlideComponent /></div>
-      <div className={loginstyle.login}>
-        <NavLink to="/">
-          <div className="nav-logo">
-            <img src={logo} alt="Logo" />
-          </div>
-        </NavLink>
-        <form>
-          <input
-            type="email"
-            name="medicaluserEmail"
-            id="medicaluserEmail"
-            placeholder="Email"
-            onChange={changeHandler}
-            value={user.medicaluserEmail}
-          />
-          <p className={basestyle.error}>{formErrors.medicaluserEmail}</p>
-          <input
-            type="password"
-            name="medicalUserPassword"
-            id="medicalUserPassword"
-            placeholder="Password"
-            onChange={changeHandler}
-            value={user.medicalUserPassword}
-          />
-          <p className={basestyle.error}>{formErrors.medicalUserPassword}</p>
-          <button className={basestyle.button_common} onClick={loginHandler}>
-            Login
-          </button>
-        </form>
-        {error && <p className={basestyle.error}>{error}</p>}
-        <NavLink to="/register" style={{ textDecoration: 'none', color: '#000', fontFamily: 'Poppins' }}>
-          Don't you have an account? <span className="lr-link" style={{ color: '#123410', fontWeight: '700' }}>Register Now</span>
-        </NavLink>
+      <div className={loginstyle.logincontainer}>
+        <div style={{ position: 'absolute', width: '100%' }}><SlideComponent /></div>
+        <div className={loginstyle.login}>
+          <NavLink to="/">
+            <div className="nav-logo">
+              <img src={logo} alt="Logo" />
+            </div>
+          </NavLink>
+          <form>
+            <input
+                type="email"
+                name="medicaluserEmail"
+                id="medicaluserEmail"
+                placeholder="Email"
+                onChange={changeHandler}
+                value={user.medicaluserEmail}
+            />
+            <p className={basestyle.error}>{formErrors.medicaluserEmail}</p>
+            <input
+                type="password"
+                name="medicalUserPassword"
+                id="medicalUserPassword"
+                placeholder="Password"
+                onChange={changeHandler}
+                value={user.medicalUserPassword}
+            />
+            <p className={basestyle.error}>{formErrors.medicalUserPassword}</p>
+            <button className={basestyle.button_common} onClick={loginHandler}>
+              Login
+            </button>
+          </form>
+          {error && <p className={basestyle.error}>{error}</p>}
+          <NavLink to="/register" style={{ textDecoration: 'none', color: '#000', fontFamily: 'Poppins' }}>
+            Don't you have an account? <span className="lr-link" style={{ color: '#123410', fontWeight: '700' }}>Register Now</span>
+          </NavLink>
+        </div>
       </div>
-    </div>
   );
 };
 
 export default Login;
-

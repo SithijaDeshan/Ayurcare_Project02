@@ -1,5 +1,6 @@
 package com.project2.ayurcare.ayurcare_backend.Service;
 
+import com.project2.ayurcare.ayurcare_backend.DTO.CategoryBookedCountDTO;
 import com.project2.ayurcare.ayurcare_backend.DTO.CategoryDTO;
 import com.project2.ayurcare.ayurcare_backend.entity.Category;
 import com.project2.ayurcare.ayurcare_backend.repository.CategoryRepository;
@@ -57,6 +58,21 @@ public class CategoryService {
         Category updatedCategory = categoryRepository.save(category); // Save the updated category
 
         return modelMapperConfig.map(updatedCategory, CategoryDTO.class);
+    }
+
+
+    // Fetch the category names and booked time slot count
+    public List<CategoryBookedCountDTO> getCategoriesWithBookedCount() {
+        List<Object[]> result = categoryRepository.findCategoriesWithBookedTimeSlotsCount();
+        List<CategoryBookedCountDTO> dtoList = new ArrayList<>();
+
+        for (Object[] row : result) {
+            String categoryName = (String) row[0];
+            Long bookedCount = (Long) row[1];
+            dtoList.add(new CategoryBookedCountDTO(categoryName, bookedCount));
+        }
+
+        return dtoList;
     }
 
 

@@ -8,7 +8,7 @@ const ProfileCard = ({ title, description, backgroundImage }) => {
         <span className="profile_img-text">
           <h4>{title}</h4>
           <p>{description}</p>
-          <button>Buy Now</button>
+          <button>Stay Tuned</button>
         </span>
       </span>
         </a>

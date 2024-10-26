@@ -1,5 +1,7 @@
 package com.project2.ayurcare.ayurcare_backend.repository;
 
+import com.project2.ayurcare.ayurcare_backend.entity.Patient;
+import com.project2.ayurcare.ayurcare_backend.entity.TimeSlot;
 import com.project2.ayurcare.ayurcare_backend.entity.VideoCall;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,5 +29,6 @@ public interface VideoCallRepository extends JpaRepository<VideoCall, Integer> {
             "JOIN ts.category c " +
             "WHERE ts.date = :date")
     List<Object[]> findVideoCallsByDate(@Param("date") LocalDate date);
+
 
 }

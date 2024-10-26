@@ -1,32 +1,3 @@
-// import React from 'react';
-// import "./prescription.css"
-// import prescriptionimg from "../../../Assets/prescription.jpg";
-// import GetAllUsersForPrescription from "./users/GetAllUsersForPrescription"
-// import PrescriptionUpload from "./prescriptionUpload/PrescriptionUpload"
-// import Ttable from "../../../Components/treattable";
-//
-// function Prescription(props) {
-//     return (
-//         <div className="prescription">
-//             <div className="pressBanner">
-//                 <img src={prescriptionimg} alt="Banner" className="pressBannerImg" />
-//             </div>
-//             <div>
-//                 <GetAllUsersForPrescription/>
-//             </div>
-//                 <PrescriptionUpload/>
-//             <div>
-//             <div>
-//                 <Ttable/>
-//             </div>
-//
-//             </div>
-//         </div>
-//     );
-// }
-//
-// export default Prescription;
-
 import React, { useState } from 'react';
 import "./prescription.css";
 import prescriptionimg from "../../../Assets/prescription.jpg";

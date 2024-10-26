@@ -31,14 +31,6 @@ export default function Sidebar() {
                   Home
                 </li>
               </Link>
-              <li className={`sidebarListItem ${location.pathname === "/admin/analytics" ? "active" : ""}`}>
-                <Timeline className="sidebarIcon" />
-                Analytics
-              </li>
-              <li className={`sidebarListItem ${location.pathname === "/admin/sales" ? "active" : ""}`}>
-                <TrendingUp className="sidebarIcon" />
-                Sales
-              </li>
             </ul>
           </div>
           <div className="sidebarMenu">
@@ -62,31 +54,6 @@ export default function Sidebar() {
                   Categories
                 </li>
               </Link>
-              <li className={`sidebarListItem ${location.pathname === "/admin/transactions" ? "active" : ""}`}>
-                <AttachMoney className="sidebarIcon" />
-                Transactions
-              </li>
-              <li className={`sidebarListItem ${location.pathname === "/admin/reports" ? "active" : ""}`}>
-                <BarChart className="sidebarIcon" />
-                Reports
-              </li>
-            </ul>
-          </div>
-          <div className="sidebarMenu">
-            <h3 className="sidebarTitle">Notifications</h3>
-            <ul className="sidebarList">
-              <li className={`sidebarListItem ${location.pathname === "/admin/mail" ? "active" : ""}`}>
-                <MailOutline className="sidebarIcon" />
-                Mail
-              </li>
-              <li className={`sidebarListItem ${location.pathname === "/admin/feedback" ? "active" : ""}`}>
-                <DynamicFeed className="sidebarIcon" />
-                Feedback
-              </li>
-              <li className={`sidebarListItem ${location.pathname === "/admin/messages" ? "active" : ""}`}>
-                <ChatBubbleOutline className="sidebarIcon" />
-                Messages
-              </li>
             </ul>
           </div>
 

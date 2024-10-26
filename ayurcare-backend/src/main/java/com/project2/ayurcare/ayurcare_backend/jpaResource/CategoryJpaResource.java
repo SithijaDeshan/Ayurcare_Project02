@@ -1,5 +1,6 @@
 package com.project2.ayurcare.ayurcare_backend.jpaResource;
 
+import com.project2.ayurcare.ayurcare_backend.DTO.CategoryBookedCountDTO;
 import com.project2.ayurcare.ayurcare_backend.DTO.CategoryDTO;
 import com.project2.ayurcare.ayurcare_backend.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class CategoryJpaResource {
     @PutMapping("/category/update/predefinedTime/{categoryId}")
     public CategoryDTO updatePredefinedTime(@PathVariable String categoryId, @RequestBody CategoryDTO categoryDTO) {
         return categoryService.updatePredefinedTime(categoryId, categoryDTO.getPredefinedTime());
+    }
+
+    @GetMapping("/category/booked-count")
+    public List<CategoryBookedCountDTO> getCategoriesWithBookedCount() {
+        return categoryService.getCategoriesWithBookedCount();
     }
 
 

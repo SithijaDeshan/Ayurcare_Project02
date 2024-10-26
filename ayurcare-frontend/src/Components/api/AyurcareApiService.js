@@ -246,3 +246,17 @@ export const getThePatientDetails = (medicalUserId, token) => {
         headers: { Authorization: `Bearer ${token}` }
     })
 };
+
+//booked categories for barchart
+export const getAllBookingCountForCategories = (token) => {
+    return apiClient.get(`category/booked-count`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
+};
+
+//for geting medicaluser email by patientId
+export const getEmailByPatientId = (token, patientId) => {
+    return apiClient.get(`http://localhost:8080/users/patient/${patientId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
+};

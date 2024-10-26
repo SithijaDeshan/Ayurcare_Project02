@@ -115,7 +115,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         req -> req
-                                .requestMatchers("/login/**", "/register/**").permitAll()
+                                .requestMatchers("/login/**", "/register/**", "/medicine/**").permitAll()
                                 .requestMatchers("/admin_only/**").hasAuthority("ADMIN")
                                 .anyRequest().authenticated()
                 ).userDetailsService(medicalUserDetails)

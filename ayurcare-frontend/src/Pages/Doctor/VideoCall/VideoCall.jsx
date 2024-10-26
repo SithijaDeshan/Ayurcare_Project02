@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import "./videoCall.css";
 import videocallBanner from "../../../Assets/videocall.jpg";
 import { videoCallApi, videoCallApiStatusUpdate } from "../../../Components/api/AyurcareApiService";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function VideoCall() {
     const [videoCallData, setVideoCallData] = useState([]);
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     const getCurrentDate = () => {
         const today = new Date();
@@ -27,6 +29,7 @@ function VideoCall() {
         try {
             const response = await videoCallApi(currentDate, token);
             setVideoCallData(response.data);
+            console.log(response.data)
         } catch (e) {
             console.log(e);
         }
@@ -70,10 +73,12 @@ function VideoCall() {
     };
 
 
-    const handleProceedToCall = async (videoCallId) => {
+    const handleProceedToCall = async (videoCallId, patientId) => {
         try {
             // Handle Proceed to Call action here
-            console.log(`Proceeding to call for video call ID: ${videoCallId}`);
+            // navigate('/videocall');
+            navigate(`/videocall?patientId=${patientId}`);
+            console.log(`Proceeding to call for patient ID: ${patientId}`);
         } catch (error) {
             console.error("Error proceeding to call:", error);
         }
@@ -116,7 +121,7 @@ function VideoCall() {
                                 <td className="transactionProceed">
                                     <button
                                         className="proceedButton"
-                                        onClick={() => handleProceedToCall(item.videoCallId)}
+                                        onClick={() => handleProceedToCall(item.videoCallId, item.patientId)}
                                     >
                                         Proceed to Call
                                     </button>

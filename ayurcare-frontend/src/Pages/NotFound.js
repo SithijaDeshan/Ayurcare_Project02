@@ -1,17 +1,23 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import notfoundsvg from "./Assests/Images/404.svg"
+import "./../Styles/notfound.css"
+import { useNavigate} from "react-router-dom";
 
-function NotFound() {
-  const deployedURL = window.location.href;
-  const location = useLocation();
+const NotFound = () => {
+    const navigate = useNavigate();
 
-  return (
-    <div>
-      <h1>Page Not Found</h1>
-      <p>The requested URL {deployedURL} was not found on this server.</p>
-      <p>The requested URL {location.pathname} was not found on this server.</p>
-    </div>
-  );
-}
+    const Btnhandler = async (e) => {
+        navigate('/');
+    }
+
+    return (
+        <>
+            <div className="cont-404">
+                <img src={notfoundsvg} alt="svg" />
+                <button onClick={Btnhandler}>Back to Home</button>
+            </div>
+        </>
+    );
+};
 
 export default NotFound;

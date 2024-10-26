@@ -35,6 +35,14 @@ export default function MedicalUserDetailsUpdate() {
       .catch((error) => console.log(error));
   }
 
+    const handleSuccessToast = (message) => {
+        toast.success(message, {
+            position: toast.POSITION.TOP_CENTER,
+            className: "custom-toast-success",
+            autoClose: 5000 // Set the duration for the toast, e.g., 5000 ms (5 seconds)
+        });
+    };
+
   function onSubmit(values) {
     console.log(values);
     const medicaluserDetails = {
@@ -51,9 +59,14 @@ export default function MedicalUserDetailsUpdate() {
 
       updateMedicalUserDetails(medicalUserId, medicaluserDetails,token)
         .then(response =>{
-          navigate('/profile')
+            handleSuccessToast("You have successfully updated your account details.");
+            setTimeout(() => {
+                navigate('/profile');
+            }, 5000);
         })
         .catch(error => console.log(error))
+
+
   }
 
   function validate(values) {

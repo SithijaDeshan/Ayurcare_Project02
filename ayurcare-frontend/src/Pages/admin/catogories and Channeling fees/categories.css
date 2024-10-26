@@ -1,6 +1,8 @@
 /* Container */
 .categories_container {
     flex: 4;
+    background-image: url('./../../../Assets/back_admin.jpg');
+    background-size: cover;
 }
 
 /* Left side - Categories section */
@@ -61,17 +63,33 @@
 
 /* Form buttons */
 .categories_btn {
-    background-color: #435334;
+    /*background-color: #435334;*/
+    /*color: white;*/
+    /*border: none;*/
+    /*padding: 12px 20px;*/
+    /*font-size: 16px;*/
+    /*border-radius: 4px;*/
+    /*cursor: pointer;*/
+    /*width: 100%;*/
+    /*margin-top: 20px;*/
+    background-color: #435334; /* Attractive blue color */
     color: white;
+    padding: 12px 20px; /* Smaller padding */
+    font-size: 16px; /* Slightly smaller font for a clean look */
     border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 4px;
+    border-radius: 6px; /* Softer rounded corners */
     cursor: pointer;
-    width: 100%;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
     margin-top: 20px;
+    display: inline-block; /* Inline-block to fit naturally with other elements */
 }
 
 .categories_btn:hover {
-    background-color: #4B6A5C;
+    /*background-color: #4B6A5C;*/
+
+    background-color: white;
+    color: black;
+    border: 2px solid black; /* Black border on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for hover effect */
+    transition: all 0.3s ease;
 }

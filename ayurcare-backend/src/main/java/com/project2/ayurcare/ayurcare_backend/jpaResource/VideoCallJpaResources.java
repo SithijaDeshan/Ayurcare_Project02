@@ -30,4 +30,6 @@ public class VideoCallJpaResources {
     public VideoCallDTO createVideoCall(@RequestBody VideoCallDTO videoCallDTO) {
         return videoCallService.createVideoCall(videoCallDTO);
     }
+
+
 }

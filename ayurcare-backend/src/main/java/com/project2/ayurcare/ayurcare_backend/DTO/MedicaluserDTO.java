@@ -1,25 +1,25 @@
 //package com.project2.ayurcare.ayurcare_backend.DTO;
 //
+//import com.project2.ayurcare.ayurcare_backend.entity.Role;
+//
 //public class MedicaluserDTO {
 //
 //	private String medicaluserId;
-//    private String medicaluserFirstname;
-//    private String medicaluserLastname;
-//    private String medicaluserEmail;
-//    private String medicaluserPhoneno;
-//    private byte[] medicaluserPhoto;
-//    private String medicaluserAddress;
-//    private String medicaluserRole;
-//    private String medicaluserIntreatment;
+//	private String medicaluserFirstname;
+//	private String medicaluserLastname;
+//	private String medicaluserEmail;
+//	private String medicaluserPhoneno;
+//	private byte[] medicaluserPhoto;
+//	private String medicaluserAddress;
+//	private Role role;
+//	private String medicaluserIntreatment;
 //
 //	public MedicaluserDTO() {
-//
 //	}
 //
 //	public MedicaluserDTO(String medicaluserId, String medicaluserFirstname, String medicaluserLastname,
-//			String medicaluserEmail, String medicaluserPhoneno, byte[] medicaluserPhoto, String medicaluserAddress,
-//			String medicaluserRole, String medicaluserIntreatment) {
-//		super();
+//						  String medicaluserEmail, String medicaluserPhoneno, byte[] medicaluserPhoto, String medicaluserAddress,
+//						  Role role, String medicaluserIntreatment) {
 //		this.medicaluserId = medicaluserId;
 //		this.medicaluserFirstname = medicaluserFirstname;
 //		this.medicaluserLastname = medicaluserLastname;
@@ -27,7 +27,7 @@
 //		this.medicaluserPhoneno = medicaluserPhoneno;
 //		this.medicaluserPhoto = medicaluserPhoto;
 //		this.medicaluserAddress = medicaluserAddress;
-//		this.medicaluserRole = medicaluserRole;
+//		this.role = role;
 //		this.medicaluserIntreatment = medicaluserIntreatment;
 //	}
 //
@@ -87,12 +87,12 @@
 //		this.medicaluserAddress = medicaluserAddress;
 //	}
 //
-//	public String getMedicaluserRole() {
-//		return medicaluserRole;
+//	public Role getRole() {
+//		return role;
 //	}
 //
-//	public void setMedicaluserRole(String medicaluserRole) {
-//		this.medicaluserRole = medicaluserRole;
+//	public void setRole(Role role) {
+//		this.role = role;
 //	}
 //
 //	public String getMedicaluserIntreatment() {
@@ -102,9 +102,11 @@
 //	public void setMedicaluserIntreatment(String medicaluserIntreatment) {
 //		this.medicaluserIntreatment = medicaluserIntreatment;
 //	}
-//
-//
 //}
+//
+
+
+
 
 package com.project2.ayurcare.ayurcare_backend.DTO;
 
@@ -121,13 +123,14 @@ public class MedicaluserDTO {
 	private String medicaluserAddress;
 	private Role role;
 	private String medicaluserIntreatment;
+	private boolean isDeleted;
 
 	public MedicaluserDTO() {
 	}
 
 	public MedicaluserDTO(String medicaluserId, String medicaluserFirstname, String medicaluserLastname,
 						  String medicaluserEmail, String medicaluserPhoneno, byte[] medicaluserPhoto, String medicaluserAddress,
-						  Role role, String medicaluserIntreatment) {
+						  Role role, String medicaluserIntreatment, boolean isDeleted) {
 		this.medicaluserId = medicaluserId;
 		this.medicaluserFirstname = medicaluserFirstname;
 		this.medicaluserLastname = medicaluserLastname;
@@ -137,6 +140,7 @@ public class MedicaluserDTO {
 		this.medicaluserAddress = medicaluserAddress;
 		this.role = role;
 		this.medicaluserIntreatment = medicaluserIntreatment;
+		this.isDeleted = isDeleted;
 	}
 
 	public String getMedicaluserId() {
@@ -209,6 +213,14 @@ public class MedicaluserDTO {
 
 	public void setMedicaluserIntreatment(String medicaluserIntreatment) {
 		this.medicaluserIntreatment = medicaluserIntreatment;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }
 

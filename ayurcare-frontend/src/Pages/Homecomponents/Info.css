@@ -1,0 +1,150 @@
+.info-section {
+
+    padding: 0px 32px;
+    text-align: center;
+    background-color: #FAF1E4;
+    padding-bottom: 5px;
+}
+.info-title-content {
+    margin: 64px 0 128px 0;
+}
+
+.treats{
+    padding-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #435334;
+}
+
+.info-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+.info-title > span {
+    position: relative;
+}
+/*.info-title span::before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    width: 75%;*/
+/*    height: 4px;*/
+/*    background-color: #9D2553;*/
+/*    border-radius: 8px;*/
+/*    left: 0;*/
+/*    bottom: -12px;*/
+/*}*/
+.info-description {
+    margin: 64px;
+    text-align: center;
+    color: rgb(77, 75, 75);
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    letter-spacing: .8px;
+    line-height: 1.8rem;
+}
+/* Cards */
+.info-cards-content {
+    padding-bottom: 64px;
+    margin: 0px 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    height: 300px;
+    justify-content: center;
+    border: 1px solid #435334;
+    border-radius: 28px;
+    background-color: white;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+
+/*.info-cards-bg{*/
+/*    position: absolute;*/
+/*    background-image: url("http://localhost:3000/AYURCARE-FRONTEND/images/ortho.jpg");*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*}*/
+.info-card-title {
+    padding: 20px;
+    margin: 32px 0 40px 0;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: .8px;
+    border-radius: 28px;
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+.info-card-description {
+    margin: 24px;
+    color: rgb(77, 75, 75);
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    letter-spacing: .8px;
+    line-height: 1.5rem;
+}
+.info-card-icon {
+    position: absolute;
+    top: -24px;
+    left: 44%;
+    padding: 10px;
+    background-color: #DCE6FF;
+    border-radius: 30px;
+}
+.info-fa-icon {
+    color: #2C96FF;
+    font-size: 24px;
+}
+
+.treat-see-all{
+    padding: 14px 20px;
+    color: #FAF1E4;
+    border: 1px solid transparent;
+    border-radius: 28px;
+    outline: transparent;
+    background-color: #435334;
+    font-size: 16px;
+    font-family: 'Rubik', sans-serif;
+    letter-spacing: .8px;
+    cursor: pointer;
+    transition: all .4s ease;
+    margin-top: 05px;
+    margin-bottom: 15px;
+
+}
+
+.treat-see-all:hover {
+    color: #435334;
+    background-color: transparent;
+    border: 1px solid #435334;
+}
+
+/* Responsive */
+@media screen and (max-width: 1000px) {
+    .info-description {
+        margin: 64px 32px;
+    }
+    .info-cards-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+@media screen and (max-width: 700px) {
+    .info-description {
+        margin: 64px 8px;
+    }
+    .info-cards-content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

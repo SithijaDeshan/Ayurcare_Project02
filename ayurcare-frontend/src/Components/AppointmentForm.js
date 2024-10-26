@@ -4,7 +4,6 @@ import "../Styles/AppointmentForm.css";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../Assets/logo.png";
-import Footer from "./Footer";
 import {
     retriveMedicalUserDetails,
     retrivePatientDetails,
@@ -15,12 +14,13 @@ import {
     getCategory,
     saveNewPatient,
     makeReservation, checkBeforeBooking, email,
+    getChannelingFee,
 } from "./api/AyurcareApiService";
 import ModalComponent from "./ModalComponent";
 import getSpecialtyRecommendation from "./api/ModelApiService";
 import "../Styles/customToast.css";
 import pymentimage from "../Assets/ayurcareBanner.png";
-import {formatDate} from "../Components/FormatDateForEmail";
+import Footer from "./Footer";
 
 function AppointmentForm() {
     const [medicaluserId, setMedicaluserId] = useState(null);
@@ -50,6 +50,7 @@ function AppointmentForm() {
 
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
+    const [doctorFee, setDoctorFee] = useState('');
 
     //All the symptoms available from the model
 
@@ -245,6 +246,20 @@ function AppointmentForm() {
         }, 5000); // Match this duration with autoClose time
     };
 
+    useEffect(() => {
+        const RetrieveFee = async () => {
+            try {
+                const response = await getChannelingFee(token);
+                const fee = response.data.fee;  // Extract the fee value
+                setDoctorFee(fee);              // Set it in the state
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+        RetrieveFee();
+    }, []);
+
     // -----------Payment------------
 
     const handlePayment = async () => {
@@ -277,7 +292,9 @@ function AppointmentForm() {
 
         saveNewPatient(patientPayload, token);
 
-        const amount1 = 100;
+        // const amount1 = 2500;
+
+        const amount1 = doctorFee;
 
         try {
             const transactionResponse = await payment(amount1 , token);
@@ -488,111 +505,113 @@ function AppointmentForm() {
     }
 
     return (
-        <div className="appointment-form-section">
-            <div className="nav">
-                <Link to="/">
-                    <div className="nav-logo">
-                        <img src={logo} alt="Logo"/>
-                    </div>
-                </Link>
-            </div>
+        <div>
 
-            <div className="form-container">
-                <h2 className="form-title">
-                    <span>Book Appointment Online</span>
-                </h2>
+            <div className="appointment-form-section">
+                <div className="nav">
+                    <Link to="/">
+                        <div className="nav-logo">
+                            <img src={logo} alt="Logo"/>
+                        </div>
+                    </Link>
+                </div>
 
-                <form className="form-content">
-                    <label>
-                        Please select your symptoms:
-                        <input
-                            type="text"
-                            value={symptoms.join(", ")}
-                            onClick={handleSymptomsClick}
-                            readOnly
-                            required
-                        />
-                    </label>
+                <div className="form-container">
+                    <h2 className="form-title">
+                        <span>Book Appointment Online</span>
+                    </h2>
 
-                    <br/>
-                    <label>
-                        Preferred Appointment Date:
-                        <select
-                            value={appointmentDate}
-                            onChange={handleDateChange}
-                            disabled={!symptomsFilled}
-                            required
-                        >
-                            <option value="default">Select</option>
-                            {availableDates.map((date, index) => (
-                                <option key={index} value={date}>
-                                    {date}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
+                    <form className="form-content">
+                        <label>
+                            Please select your symptoms:
+                            <input
+                                type="text"
+                                value={symptoms.join(", ")}
+                                onClick={handleSymptomsClick}
+                                readOnly
+                                required
+                            />
+                        </label>
 
-                    <br/>
+                        <br/>
+                        <label>
+                            Preferred Appointment Date:
+                            <select
+                                value={appointmentDate}
+                                onChange={handleDateChange}
+                                disabled={!symptomsFilled}
+                                required
+                            >
+                                <option value="default">Select</option>
+                                {availableDates.map((date, index) => (
+                                    <option key={index} value={date}>
+                                        {date}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
 
-                    <label>
-                        Preferred Appointment Time Slot:
-                        <select
-                            value={appointmentTime}
-                            onChange={handleTimeChange}
-                            disabled={!dateFilled}
-                            required
-                        >
-                            <option value="default">Select</option>
-                            {availableTimeSlots.map((slot, index) => (
-                                <option
-                                    key={index}
-                                    value={`${appointmentDate}T${formatDate(slot.startTime)}`}
+                        <br/>
+
+                        <label>
+                            Preferred Appointment Time Slot:
+                            <select
+                                value={appointmentTime}
+                                onChange={handleTimeChange}
+                                disabled={!dateFilled}
+                                required
+                            >
+                                <option value="default">Select</option>
+                                {availableTimeSlots.map((slot, index) => (
+                                    <option
+                                        key={index}
+                                        value={`${appointmentDate}T${formatDate(slot.startTime)}`}
+                                    >
+                                        {`${formatDate(slot.startTime)} to ${formatDate(
+                                            slot.endTime
+                                        )}`}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <br/>
+
+                        <div className="button-container">
+                            <Link to="/">
+                                <button
+                                    type="button"
+                                    className="text-appointment-btn back-button"
                                 >
-                                    {`${formatDate(slot.startTime)} to ${formatDate(
-                                        slot.endTime
-                                    )}`}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-
-                    <br/>
-
-                    <div className="button-container">
-                        <Link to="/">
+                                    Back
+                                </button>
+                            </Link>
                             <button
                                 type="button"
-                                className="text-appointment-btn back-button"
+                                className="text-appointment-btn"
+                                onClick={handlePayment}
+                                disabled={!isFormFilled}
                             >
-                                Back
+                                Continue
                             </button>
-                        </Link>
-                        <button
-                            type="button"
-                            className="text-appointment-btn"
-                            onClick={handlePayment}
-                            disabled={!isFormFilled}
-                        >
-                            Continue
-                        </button>
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
+
+                <ToastContainer autoClose={5000} limit={1} closeButton={false}/>
+
+                <ModalComponent
+                    isOpen={modalIsOpen}
+                    onRequestClose={handleModalClose}
+                    options={symptomOptions}
+                    selectedOptions={symptoms}
+                    setSelectedOptions={setSymptoms}
+                />
             </div>
-
-            <ToastContainer autoClose={5000} limit={1} closeButton={false}/>
-
-            <ModalComponent
-                isOpen={modalIsOpen}
-                onRequestClose={handleModalClose}
-                options={symptomOptions}
-                selectedOptions={symptoms}
-                setSelectedOptions={setSymptoms}
-            />
-
-            <div className="legal-footer">
-                <p>© 2013-2024 AyurCare. All rights reserved.</p>
-            </div>
+            <Footer/>
         </div>
+
+
     );
 }
 

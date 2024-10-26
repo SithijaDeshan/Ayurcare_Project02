@@ -38,3 +38,10 @@
     color: #9D2553;
 
 }
+
+/* Style for changing the placeholder color */
+.register input::placeholder {
+    color: white; /* Change to the desired placeholder color */
+    opacity: 1; /* Ensures the color is fully applied */
+}
+
