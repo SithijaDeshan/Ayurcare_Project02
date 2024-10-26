@@ -1,154 +1,209 @@
 .user {
-  flex: 4;
-  padding: 20px;
+    flex: 4;
+    padding: 30px;
+    background-color: #f7f9fc; /* Light background */
+    font-family: 'Inter', sans-serif; /* Use a clean font */
 }
 
 .userTitleContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .userAddButton {
-  width: 80px;
-  border: none;
-  padding: 5px;
-  background-color: teal;
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
-  font-size: 16px;
+
+    width: 160px; /* Set a more reasonable width */
+    background-color: #435334; /* Attractive blue color */
+    color: white;
+    padding: 10px 16px; /* Smaller padding */
+    font-weight: 500;
+    font-size: 14px; /* Slightly smaller font for a clean look */
+    border: none;
+    border-radius: 6px; /* Softer rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    margin-top: 30px;
+    display: inline-block; /* Inline-block to fit naturally with other elements */
+}
+
+.userAddButton:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black; /* Black border on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for hover effect */
+    transition: all 0.3s ease;
 }
 
 .userContainer {
-  display: flex;
-  margin-top: 20px;
+    display: flex;
+    margin-top: 20px;
+}
+
+.userShow, .userUpdate {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
 }
 
 .userShow {
-  flex: 1;
-  padding: 20px;
-  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    flex: 1;
 }
 
 .userUpdate {
-  flex: 2;
-  padding: 20px;
-  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  margin-left: 20px;
+    flex: 2;
+    margin-left: 20px;
 }
 
 .userShowTop {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .userShowImg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .userShowTopTitle {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
 }
 
 .userShowUsername {
-  font-weight: 600;
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
 }
 
 .userShowUserTitle {
-  font-weight: 300;
+    font-weight: 400;
+    font-size: 14px;
+    color: #777;
 }
 
-.userShowBottom{
+.userShowBottom {
     margin-top: 20px;
 }
 
 .userShowTitle {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgb(175, 170, 170);
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
-.userShowInfo{
+.userShowInfo {
     display: flex;
     align-items: center;
-    margin: 20px 0px;
+    margin: 10px 0;
     color: #444;
 }
 
-.userShowIcon{
-    font-size: 16px !important;
+.userShowIcon {
+    font-size: 18px !important;
+    color: #007bff;
 }
 
-.userShowInfoTitle{
+.userShowInfoTitle {
     margin-left: 10px;
+    font-size: 14px;
 }
 
-.userUpdateTitle{
+.userUpdateTitle {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 20px;
 }
 
-.userUpdateForm{
+.userUpdateForm {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.userUpdateItem{
+.userUpdateItem {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
-.userUpdateItem>label{
+.userUpdateItem > label {
     margin-bottom: 5px;
     font-size: 14px;
+    font-weight: 500;
+    color: #666;
 }
 
-.userUpdateInput{
+.userUpdateInput {
     border: none;
     width: 250px;
-    height: 30px;
-    border-bottom: 1px solid gray;
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
 }
 
-.userUpdateRight{
+.userUpdateInput:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.userUpdateRight {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.userUpdateUpload{
+.userUpdateUpload {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
-.userUpdateImg{
-    width: 100px;
-    height: 100px;
+.userUpdateImg {
+    width: 120px;
+    height: 120px;
     border-radius: 10px;
     object-fit: cover;
     margin-right: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.userUpdateIcon{
+.userUpdateIcon {
     cursor: pointer;
+    color: #007bff;
+    font-size: 24px;
 }
 
-.userUpdateButton{
-    border-radius: 5px;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    background-color: darkblue;
+.userUpdateButton {
+
+    width: 160px; /* Set a more reasonable width */
+    background-color: #435334; /* Attractive blue color */
     color: white;
-    font-weight: 600;
+    padding: 10px 16px; /* Smaller padding */
+    font-weight: 500;
+    font-size: 14px; /* Slightly smaller font for a clean look */
+    border: none;
+    border-radius: 6px; /* Softer rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    margin-top: 30px;
+    display: inline-block; /* Inline-block to fit naturally with other elements */
+}
+
+.userUpdateButton:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black; /* Black border on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for hover effect */
+    transition: all 0.3s ease;
 }

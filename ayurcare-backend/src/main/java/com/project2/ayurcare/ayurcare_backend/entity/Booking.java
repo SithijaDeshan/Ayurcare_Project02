@@ -32,6 +32,9 @@ public class Booking {
     @Column(name = "booking_date", nullable = false)
     private LocalDateTime bookingDate;
 
+	@Column(name = "status", nullable = false)
+	private String status = "Booked";
+
 	public Booking() {
 
 	}
@@ -67,6 +70,12 @@ public class Booking {
 	public void setBookingDate(LocalDateTime bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-    
-    
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

@@ -1,57 +1,122 @@
+.newuserbody {
+    flex: 4;
+    padding: 60px;
+    background-image: url('./../../../Assets/back_admin.jpg');
+    background-size: cover;
+}
+
 .newUser {
-  flex: 4;
+    padding: 30px;
+    background-color: #f4f7fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+
+}
+
+.newUser h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .newUserForm {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .newUserItem {
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  margin-right: 20px;
+    width: calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
 }
 
 .newUserItem > label {
-  margin-bottom: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: rgb(151, 150, 150);
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
 }
 
-.newUserItem > input {
-  height: 20px;
-  padding: 10px;
-  border: 1px solid gray;
-  border-radius: 5px;
+.newUserItem > input,
+.newUserSelect {
+    height: 45px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.newUserItem > input:focus,
+.newUserSelect:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.newUserGender {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .newUserGender > input {
-  margin-top: 15px;
+    margin-top: 0;
 }
 
-.newUserGender>label{
-    margin: 10px;
-    font-size: 18px;
+.newUserGender > label {
+    margin-right: 10px;
+    font-size: 16px;
     color: #555;
 }
 
-.newUserSelect{
-    height: 40px;
-    border-radius: 5px;
+.newUserButton {
+    width: 160px; /* Set a more reasonable width */
+    background-color: #435334; /* Attractive blue color */
+    color: white;
+    padding: 10px 16px; /* Smaller padding */
+    font-weight: 500;
+    font-size: 14px; /* Slightly smaller font for a clean look */
+    border: none;
+    border-radius: 6px; /* Softer rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    margin-top: 30px;
+    display: inline-block; /* Inline-block to fit naturally with other elements */
 }
 
-.newUserButton{
-    width: 200px;
-    border: none;
-    background-color: darkblue;
-    color: white;
-    padding: 7px 10px;
-    font-weight: 600;
-    border-radius: 10px;
-    margin-top: 30px;
-    cursor: pointer;
+.newUserButton:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black; /* Black border on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for hover effect */
+    transition: all 0.3s ease;
+}
+
+
+
+
+.newUserButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.newUserButtonContainer .newUserButton {
+    margin-top: 0;
+}
+
+p.error {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+}
+
+.custom-toast-success {
+    background-color: #28a745 !important;
+    color: white !important;
+    font-size: 16px;
 }

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { register } from "../../../Components/api/AyurcareApiService";
 import basestyle from "../../../Styles/Base.module.css";
 import { toast, ToastContainer } from 'react-toastify';
+import back from "./../../../Assets/back_admin.jpg"
 
 export default function NewUser() {
   const navigate = useNavigate();
@@ -109,146 +110,133 @@ export default function NewUser() {
   };
 
   return (
-      <div className="newUser">
-        <h1 className="newUserTitle">New User</h1>
+      <div className="newuserbody" >
+        <div className="newUser">
+          <h1 className="newUserTitle">New User</h1>
 
-        <form className="newUserForm" onSubmit={signupHandler}>
+          <form className="newUserForm" onSubmit={signupHandler}>
 
-          <div className="newUserItem">
-            <label>First Name</label>
-            <input
-                type="text"
-                name="medicaluserFirstname"
-                placeholder="john"
-                onChange={changeHandler}
-                value={user.medicaluserFirstname}
-            />
-            <p className={basestyle.error}>{formErrors.medicaluserFirstname}</p>
-          </div>
-
-          <div className="newUserItem">
-            <label>Last Name</label>
-            <input
-                type="text"
-                name="medicaluserLastname"
-                placeholder="John Smith"
-                onChange={changeHandler}
-                value={user.medicaluserLastname}
-            />
-            <p className={basestyle.error}>{formErrors.medicaluserLastname}</p>
-          </div>
-
-          <div className="newUserItem">
-            <label>Email</label>
-            <input
-                type="email"
-                name="medicaluserEmail"
-                placeholder="john@gmail.com"
-                onChange={changeHandler}
-                value={user.medicaluserEmail}
-            />
-            <p className={basestyle.error}>{formErrors.medicaluserEmail}</p>
-          </div>
-
-          <div className="newUserItem">
-            <label>Password</label>
-            <input
-                type="password"
-                name="medicalUserPassword"
-                placeholder="password"
-                onChange={changeHandler}
-                value={user.medicalUserPassword}
-            />
-            <p className={basestyle.error}>{formErrors.medicalUserPassword}</p>
-          </div>
-
-          <div className="newUserItem">
-            <label>Confirm Password</label>
-            <input
-                type="password"
-                name="cpassword"
-                placeholder="confirm password"
-                onChange={changeHandler}
-                value={user.cpassword}
-            />
-            <p className={basestyle.error}>{formErrors.cpassword}</p>
-          </div>
-
-          <div className="newUserItem">
-            <label>Phone</label>
-            <input
-                type="text"
-                name="medicaluserPhoneno"
-                placeholder="+1 123 456 78"
-                onChange={changeHandler}
-                value={user.medicaluserPhoneno}
-            />
-            <p className={basestyle.error}>{formErrors.medicaluserPhoneno}</p>
-          </div>
-
-          <div className="newUserItem">
-            <label>Address</label>
-            <input
-                type="text"
-                name="medicaluserAddress"
-                placeholder="New York | USA"
-                onChange={changeHandler}
-                value={user.medicaluserAddress}
-            />
-            <p className={basestyle.error}>{formErrors.medicaluserAddress}</p>
-          </div>
-
-          <div className="newUserItem">
-            <label>Gender</label>
-            <div className="newUserGender">
+            <div className="newUserItem">
+              <label>First Name</label>
               <input
-                  type="radio"
-                  name="gender"
-                  id="male"
-                  value="male"
+                  type="text"
+                  name="medicaluserFirstname"
+                  placeholder="john"
                   onChange={changeHandler}
-                  checked={user.gender === 'male'}
+                  value={user.medicaluserFirstname}
               />
-              <label htmlFor="male">Male</label>
-              <input
-                  type="radio"
-                  name="gender"
-                  id="female"
-                  value="female"
-                  onChange={changeHandler}
-                  checked={user.gender === 'female'}
-              />
-              <label htmlFor="female">Female</label>
-              <input
-                  type="radio"
-                  name="gender"
-                  id="other"
-                  value="other"
-                  onChange={changeHandler}
-                  checked={user.gender === 'other'}
-              />
-              <label htmlFor="other">Other</label>
+              <p className={basestyle.error}>{formErrors.medicaluserFirstname}</p>
             </div>
-            <p className={basestyle.error}>{formErrors.gender}</p>
-          </div>
 
-          <div className="newUserItem">
-            <label>Role</label>
-            <select
-                className="newUserSelect"
-                name="role"
-                id="role"
-                onChange={changeHandler}
-                value={user.role}
-            >
-              <option value="USER">USER</option>
-              <option value="ADMIN">ADMIN</option>
-            </select>
-          </div>
+            <div className="newUserItem">
+              <label>Last Name</label>
+              <input
+                  type="text"
+                  name="medicaluserLastname"
+                  placeholder="John Smith"
+                  onChange={changeHandler}
+                  value={user.medicaluserLastname}
+              />
+              <p className={basestyle.error}>{formErrors.medicaluserLastname}</p>
+            </div>
 
-          <button className="newUserButton">Create</button>
-        </form>
-        <ToastContainer />
+            <div className="newUserItem">
+              <label>Email</label>
+              <input
+                  type="email"
+                  name="medicaluserEmail"
+                  placeholder="john@gmail.com"
+                  onChange={changeHandler}
+                  value={user.medicaluserEmail}
+              />
+              <p className={basestyle.error}>{formErrors.medicaluserEmail}</p>
+            </div>
+
+            <div className="newUserItem">
+              <label>Password</label>
+              <input
+                  type="password"
+                  name="medicalUserPassword"
+                  placeholder="password"
+                  onChange={changeHandler}
+                  value={user.medicalUserPassword}
+              />
+              <p className={basestyle.error}>{formErrors.medicalUserPassword}</p>
+            </div>
+
+            <div className="newUserItem">
+              <label>Confirm Password</label>
+              <input
+                  type="password"
+                  name="cpassword"
+                  placeholder="confirm password"
+                  onChange={changeHandler}
+                  value={user.cpassword}
+              />
+              <p className={basestyle.error}>{formErrors.cpassword}</p>
+            </div>
+
+            <div className="newUserItem">
+              <label>Phone</label>
+              <input
+                  type="text"
+                  name="medicaluserPhoneno"
+                  placeholder="+1 123 456 78"
+                  onChange={changeHandler}
+                  value={user.medicaluserPhoneno}
+              />
+              <p className={basestyle.error}>{formErrors.medicaluserPhoneno}</p>
+            </div>
+
+            <div className="newUserItem">
+              <label>Address</label>
+              <input
+                  type="text"
+                  name="medicaluserAddress"
+                  placeholder="New York | USA"
+                  onChange={changeHandler}
+                  value={user.medicaluserAddress}
+              />
+              <p className={basestyle.error}>{formErrors.medicaluserAddress}</p>
+            </div>
+
+            <div className="newUserItem">
+              <label>Gender</label>
+              <select
+                  className="newUserSelect"
+                  name="gender"
+                  id="gender"
+                  onChange={changeHandler}
+                  value={user.gender}
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <p className={basestyle.error}>{formErrors.gender}</p>
+            </div>
+
+
+            <div className="newUserItem">
+              <label>Role</label>
+              <select
+                  className="newUserSelect"
+                  name="role"
+                  id="role"
+                  onChange={changeHandler}
+                  value={user.role}
+              >
+                <option value="USER">User</option>
+                <option value="ADMIN">Admin</option>
+                <option value="DOCTOR">Doctor</option>
+                <option value="OPERATOR">Staff</option>
+              </select>
+            </div>
+            <button className="newUserButton">Create</button>
+          </form>
+          <ToastContainer />
+        </div>
       </div>
+
   );
 }

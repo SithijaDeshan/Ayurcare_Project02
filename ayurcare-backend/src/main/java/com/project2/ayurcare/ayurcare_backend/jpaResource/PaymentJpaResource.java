@@ -25,4 +25,9 @@ public class PaymentJpaResource {
         return paymentDTO;
     }
 
+    @GetMapping("payment/count")
+    public int getPatientCount() {
+        return paymentService.countAllPayment();
+    }
+
 }

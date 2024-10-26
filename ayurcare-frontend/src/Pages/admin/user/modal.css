@@ -1,5 +1,5 @@
 /* modal.css */
-.modal-overlay {
+.user_modal-overlay {
     background: rgba(0, 0, 0, 0.4); /* Slightly lighter overlay */
     position: fixed;
     top: 0;
@@ -12,7 +12,7 @@
     z-index: 1000; /* Ensure the overlay is above other content */
 }
 
-.modal {
+.user_modal {
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
@@ -24,25 +24,24 @@
     text-align: center; /* Center-align text */
 }
 
-.modal-header {
+.user_modal-header {
     font-size: 1.25em;
     margin-bottom: 15px;
     font-weight: bold;
 }
 
-.modal-body {
+.user_modal-body {
     font-size: 1em;
     margin-bottom: 20px;
 }
 
-.modal-footer {
+.user_modal-footer {
     display: flex;
     justify-content: center;
     gap: 10px; /* Space between buttons */
 }
 
-.modal-button {
-    background-color: #007bff;
+.user_modal-button_confirm, .user_modal-button_cansel {
     border: none;
     color: white;
     margin: 10px;
@@ -53,12 +52,24 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.modal-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Slight scaling effect on hover */
+.user_modal-button_confirm {
+    background-color: #4CAF50; /* Modern green */
+    color: white;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
-.modal-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Add focus ring */
+.user_modal-button_confirm:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.user_modal-button_cansel {
+    background-color: #f44336; /* Modern red */
+    color: white;
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.user_modal-button_cansel:hover {
+    background-color: #e53935;
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
 }

@@ -45,5 +45,12 @@
     color: #5a5a5a;
 }
 
+/* Style for changing the placeholder color */
+.login input::placeholder {
+    color: white; /* Change to the desired placeholder color */
+    opacity: 1; /* Ensures the color is fully applied */
+}
+
+
 /*    width: 300px;*/
 /*}*/

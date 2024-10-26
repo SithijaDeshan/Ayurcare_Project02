@@ -1,0 +1,224 @@
+a {
+    text-decoration: none;
+}
+
+.profile_body {
+    background-image: url('../../Assets/profile/proback.jpg'); /* Update with the correct path */
+    background-size: 100%; /* Cover the whole div */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* No repeating */
+}
+
+.profile_wrapper {
+
+    backdrop-filter: blur(4px);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile_services {
+    width: 1100px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.profile_single-img {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    width: 325px;
+    height: 450px;
+    overflow: hidden;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0);
+    transition: .3s;
+    background-size: cover;
+    background-position: center center;
+}
+
+.profile_single-img_refund {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    width: 325px;
+    height: 450px;
+    overflow: hidden;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0);
+    transition: .3s;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* Apply red border when status is "Cancel" */
+.profile_single-img_refund.cancelled {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3), 0 0 10px 5px red;
+}
+
+/* Button disabled styling */
+.profile_services button[disabled] {
+    background-color: #252525;
+    cursor: not-allowed;
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 400px; /* Define a width for the modal */
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-content input {
+    padding: 5px;
+    margin-left: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    background-color: #252525;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: black;
+}
+
+
+
+.profile_single-img:hover {
+    transform: translate(0, -9px);
+}
+
+.profile_single-img_refund:hover {
+    transform: translate(0, -9px);
+}
+
+
+.profile_img-one {
+    background-image: url('../../Assets/profile/1.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.profile_img-two {
+    background-image: url('../../Assets/profile/videocall.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.profile_img-three {
+    background-image: url('../../Assets/profile/refund.png');
+    background-size: cover;
+    background-position: center center;
+}
+
+.profile_img-text {
+    /*background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));*/
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0));
+    padding: 0 10px 5px 10px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform: translate(0, 110px);
+    line-height: 25px;
+    transition: 0.5s ease;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+}
+
+.profile_img-text h4 {
+    line-height: 15px;
+    padding: 0;
+    margin: 20px 0;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 25px;
+}
+
+
+.profile_services button {
+    background: #252525;
+    color: #fff;
+    padding: 10px 35px;
+    border: none;
+    border-radius: 50px;
+    line-height: 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add smooth transition */
+}
+
+/* Hover effect */
+.profile_services button:hover {
+    background: rgb(0 0 0); /* Change background color on hover */
+    color: #fff; /* Optionally change the text color on hover */
+}
+
+
+.profile_single-img:hover .profile_img-text {
+    transform: translate(0, 0);
+}
+
+.profile_single-img_refund:hover .profile_img-text {
+    transform: translate(0, 0);
+}
+
+
+@media (max-width: 991px) {
+    .profile_wrapper {
+        padding: 0;
+    }
+
+    .profile_services {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a {
+        margin-bottom: 35px;
+    }
+}

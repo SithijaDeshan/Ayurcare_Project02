@@ -37,6 +37,9 @@ function Navbar() {
   const handleLogout = () => {
     logout();
     localStorage.removeItem('username');
+    localStorage.removeItem('patientId');
+    localStorage.removeItem('userid');
+    localStorage.removeItem('role')
     setIsLoggedIn(false);
     navigate('/login');
   };
@@ -59,13 +62,13 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <a href="treatments" className="navbar-links">
-            Treatments
+          <a href="aboutus" className="navbar-links">
+            AboutUs
           </a>
         </li>
         <li>
-          <a href="doctors" className="navbar-links">
-            Doctors
+          <a href="reachus" className="navbar-links">
+            ContactUs
           </a>
         </li>
         <li>

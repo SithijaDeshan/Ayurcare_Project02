@@ -60,12 +60,19 @@ const Register = () => {
   const validateForm = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+    const phoneRegex = /^[0-9]{10}$/;
 
     if (!values.medicaluserFirstname) {
       errors.medicaluserFirstname = "First Name is required";
     }
     if (!values.medicaluserLastname) {
       errors.medicaluserLastname = "Last Name is required";
+    }
+    if (!values.medicaluserPhoneno) {
+      errors.medicaluserPhoneno = "Phone Number is required";
+    } else if (!phoneRegex.test(values.medicaluserPhoneno)) {
+      errors.medicaluserPhoneno = "Phone Number must be a valid 10-digit number";
     }
     if (!values.medicaluserEmail) {
       errors.medicaluserEmail = "Email is required";
@@ -77,15 +84,14 @@ const Register = () => {
     }
     if (!values.medicalUserPassword) {
       errors.medicalUserPassword = "Password is required";
-    } else if (values.medicalUserPassword.length < 4) {
-      errors.medicalUserPassword = "Password must be more than 4 characters";
-    } else if (values.medicalUserPassword.length > 10) {
-      errors.medicalUserPassword = "Password cannot exceed more than 10 characters";
+    } else if (!passwordRegex.test(values.medicalUserPassword)) {
+      errors.medicalUserPassword =
+          "Password must be 8-12 characters long, include at least one uppercase letter, one number, and one special character (@, $, !, %, *, etc.)";
     }
     if (!values.cpassword) {
       errors.cpassword = "Confirm Password is required";
     } else if (values.cpassword !== values.medicalUserPassword) {
-      errors.cpassword = "Confirm password and password should be the same";
+      errors.cpassword = "Confirm password and password should match";
     }
     return errors;
   };

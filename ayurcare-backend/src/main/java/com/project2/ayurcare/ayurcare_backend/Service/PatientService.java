@@ -12,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -29,6 +31,7 @@ public class PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
+
 
 
     public PaymentDTO SavePatient(PatientDTO patientDTO) {
@@ -49,7 +52,8 @@ public class PatientService {
             // Check if there is already a patient with the given medical user ID
             Optional<Patient> existingPatient = patientRepository.findByMedicaluserMedicaluserId(medicaluser.getMedicaluserId());
             if (existingPatient.isPresent()) {
-                throw new IllegalArgumentException("There is already a patient with this medical user ID");
+//                throw new IllegalArgumentException("There is already a patient with this medical user ID");
+                return null;
             }
 
             Patient patient = modelMapperConfig.map(patientDTO, Patient.class);
@@ -66,5 +70,30 @@ public class PatientService {
         }
         return null; // Adjust return statement as necessary
     }
+
+    public int getPatientCount() {
+        return patientRepository.countAllPatients();
+    }
+
+    public List<PatientDTO> getAllPatients() {
+        List<Patient> patients = patientRepository.findAll();
+        List<PatientDTO> patientDTOs = new ArrayList<>();
+        for (Patient patient : patients) {
+            PatientDTO patientDTO = modelMapperConfig.map(patient, PatientDTO.class);
+            patientDTOs.add(patientDTO);
+        }
+        return patientDTOs;
+    }
+
+    public PatientDTO getPatientByMedicaluserId(String medicaluserId) {
+        Optional<Patient> optionalPatient = patientRepository.findByMedicaluserMedicaluserId(medicaluserId);
+        if (!optionalPatient.isPresent()) {
+            throw new IllegalArgumentException("Patient not found for this medical user ID");
+        }
+
+        Patient patient = optionalPatient.get();
+        return modelMapperConfig.map(patient, PatientDTO.class);
+    }
+
 
 }

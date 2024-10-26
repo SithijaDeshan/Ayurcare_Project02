@@ -1,0 +1,95 @@
+/* Container */
+.categories_container {
+    flex: 4;
+    background-image: url('./../../../Assets/back_admin.jpg');
+    background-size: cover;
+}
+
+/* Left side - Categories section */
+.categories_left {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 20px;
+}
+
+/* Categories columns */
+.categories_columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.categories_column {
+    width: 48%; /* Ensure columns are side by side and fill space */
+}
+
+/* Form group */
+.categories_form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.categories_form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Input fields */
+.categories_form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Right side - Doctor Channelling Fees */
+.categories_right {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+/* Form buttons */
+.categories_btn {
+    /*background-color: #435334;*/
+    /*color: white;*/
+    /*border: none;*/
+    /*padding: 12px 20px;*/
+    /*font-size: 16px;*/
+    /*border-radius: 4px;*/
+    /*cursor: pointer;*/
+    /*width: 100%;*/
+    /*margin-top: 20px;*/
+    background-color: #435334; /* Attractive blue color */
+    color: white;
+    padding: 12px 20px; /* Smaller padding */
+    font-size: 16px; /* Slightly smaller font for a clean look */
+    border: none;
+    border-radius: 6px; /* Softer rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    margin-top: 20px;
+    display: inline-block; /* Inline-block to fit naturally with other elements */
+}
+
+.categories_btn:hover {
+    /*background-color: #4B6A5C;*/
+
+    background-color: white;
+    color: black;
+    border: 2px solid black; /* Black border on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for hover effect */
+    transition: all 0.3s ease;
+}

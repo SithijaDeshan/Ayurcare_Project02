@@ -1,0 +1,213 @@
+.smallWidget {
+    flex: 1;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.smallWidgetTitle {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.smallWidgetImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.smallWidgetList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.smallWidgetListItem {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    margin: 20px 0px;
+    gap: 10px;
+}
+
+.smallWidgetUser {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.smallWidgetUsername {
+    font-weight: 600;
+}
+
+.smallWidgetUserTitle {
+    font-weight: 300;
+}
+
+.smallWidgetButtonGroup {
+    display: flex;
+    gap: 50px;
+}
+
+.smallWidgetButton {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    padding: 7px 10px;
+    background-color: #eeeef7;
+    color: #555;
+    cursor: pointer;
+}
+
+.smallWidgetIcon {
+    font-size: 16px !important;
+    margin-right: 5px;
+}
+
+.selectButton {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.selectButton:hover {
+    background-color: #c8e5bc;
+}
+
+.infoModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    text-align: center;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.infoModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.modalDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.modalProfileImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.modalProfileImg:hover {
+    transform: scale(1.05);
+}
+
+.modalProfileName {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 10px 0;
+}
+
+.modalUserEmail {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.modalUserInfo {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.closeInfoModalButton {
+    padding: 12px 24px;
+    border: none;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.closeInfoModalButton:hover {
+    background-color: #ff4d4d;
+    transform: scale(1.05);
+}
+
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 8px 16px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.searchIcon {
+    color: #888;
+    margin-right: 10px;
+}
+
+.searchBar {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.searchBar::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.smallWidgetList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto;
+}

@@ -1,0 +1,72 @@
+.userDetailsForm {
+    flex: 2;
+    padding: 20px;
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.formTitle {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.formLeft {
+    display: flex;
+    flex-direction: column;
+}
+
+.formItem {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.formItem > label {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.formInput {
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid rgb(128, 128, 128);
+}
+
+/* Dropzone styles */
+.dropbox {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dropbox:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.dropbox p {
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.dropbox img {
+    max-width: 100%;
+    max-height: 200px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}

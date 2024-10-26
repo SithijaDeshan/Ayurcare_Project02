@@ -216,13 +216,13 @@ export default function User() {
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 contentLabel="Confirm Update"
-                className="modal"
+                className="user_modal"
                 overlayClassName="modal-overlay"
             >
                 <h2>Confirm Update</h2>
                 <p>Are you sure you want to update the user details?</p>
-                <button onClick={handleConfirmUpdate} className="modal-button">Yes, Update</button>
-                <button onClick={closeModal} className="modal-button">Cancel</button>
+                <button onClick={handleConfirmUpdate} className="user_modal-button_confirm">Yes, Update</button>
+                <button onClick={closeModal} className="user_modal-button_cansel">Cancel</button>
             </Modal>
 
             <ToastContainer /> {/* Ensure ToastContainer is rendered */}

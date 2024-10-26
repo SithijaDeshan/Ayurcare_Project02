@@ -2,16 +2,18 @@ import "./userList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { deleteMedicalUserDetails, retriveAllMedicalUsers } from "../../../Components/api/AyurcareApiService";
-import { toast } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import Modal from 'react-modal';
 import "./modal.css";
 import "../../../Styles/customToast.css";
+import user_default from "../../../Assets/user_default.png"
 
 export default function UserList() {
   const [data, setData] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null); // Track the user ID to delete
+  const [selectedUserRole, setSelectedUserRole] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem('token');
 
@@ -36,6 +38,7 @@ export default function UserList() {
     retriveAllMedicalUsers(token)
         .then(response => {
           setData(response.data);
+          console.log(response.data)
         })
         .catch(error => {
           console.error("There was an error fetching the users!", error);
@@ -43,8 +46,9 @@ export default function UserList() {
   }
 
   // Open modal with user ID to delete
-  const openModal = (id) => {
+  const openModal = (id, role) => {
     setSelectedUserId(id);
+    setSelectedUserRole(role);
     setIsModalOpen(true);
   };
 
@@ -52,10 +56,21 @@ export default function UserList() {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedUserId(null);
+    setSelectedUserRole(null);
   };
 
-  // Handle delete operation
   const handleDelete = async () => {
+    // Check if the selected user is an ADMIN
+    if (selectedUserRole === "ADMIN") {
+      toast.error("You can't delete an admin user", {
+              position: toast.POSITION.TOP_CENTER,
+              className: "custom-toast-error",
+              autoClose: 5000,
+            });
+      closeModal(); // Close the modal without performing the delete
+      return;
+    }
+
     try {
       await deleteMedicalUserDetails(selectedUserId, token);
       setData(data.filter((item) => item.medicaluserId !== selectedUserId));
@@ -63,10 +78,10 @@ export default function UserList() {
     } catch (e) {
       console.error(e);
       toast.error("Failed to delete user", {
-        position: toast.POSITION.TOP_CENTER,
-        className: "custom-toast-error",
-        autoClose: 5000,
-      });
+              position: toast.POSITION.TOP_CENTER,
+              className: "custom-toast-error",
+              autoClose: 5000,
+            });
     } finally {
       closeModal();
     }
@@ -80,7 +95,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => (
           <div className="userListUser">
-            <img className="userListImg" src={params.row.medicaluserPhoto || "/path/to/default-avatar.png"} alt="" />
+            <img className="userListImg" src={params.row.medicaluserPhoto || user_default} alt="" />
             {params.row.medicaluserFirstname} {params.row.medicaluserLastname}
           </div>
       ),
@@ -99,7 +114,7 @@ export default function UserList() {
             </Link>
             <DeleteOutline
                 className="userListDelete"
-                onClick={() => openModal(params.row.medicaluserId)}
+                onClick={() => openModal(params.row.medicaluserId, params.row.role)}
             />
           </>
       ),
@@ -120,14 +135,15 @@ export default function UserList() {
             isOpen={isModalOpen}
             onRequestClose={closeModal}
             contentLabel="Confirm Delete"
-            className="modal"
+            className="user_list_modal"
             overlayClassName="modal-overlay"
         >
           <h2>Confirm Deletion</h2>
           <p>Are you sure you want to delete this user?</p>
-          <button onClick={handleDelete} className="modal-button">Yes, Delete</button>
-          <button onClick={closeModal} className="modal-button">Cancel</button>
+          <button onClick={handleDelete} className="user_list_modal-button_confirm">Yes, Delete</button>
+          <button onClick={closeModal} className="user_list_modal-button_cansel">Cancel</button>
         </Modal>
+        <ToastContainer />
       </div>
   );
 }

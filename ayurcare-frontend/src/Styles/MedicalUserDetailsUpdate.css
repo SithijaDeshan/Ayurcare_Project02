@@ -156,8 +156,8 @@
     text-align: center;
     font-family: 'Rubik', sans-serif;
     font-size: 14px;
-    position: absolute;
-    bottom: 0;
+    position: relative; /* Makes sure the footer stays at the bottom */
+    bottom: 0; /* Aligns the footer to the bottom */
     width: 100%;
 }
 

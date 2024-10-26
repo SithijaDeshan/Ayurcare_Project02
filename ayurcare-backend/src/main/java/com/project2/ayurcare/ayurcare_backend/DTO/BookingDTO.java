@@ -8,15 +8,9 @@ public class BookingDTO {
     private String timeSlotId; 
     private String patientId;  
     private LocalDateTime bookingDate;
+    private String status;
 
     public BookingDTO() {
-    }
-
-    public BookingDTO(String bookingId, String timeSlotId, String patientId, LocalDateTime bookingDate) {
-        this.bookingId = bookingId;
-        this.timeSlotId = timeSlotId;
-        this.patientId = patientId;
-        this.bookingDate = bookingDate;
     }
 
     public String getBookingId() {
@@ -51,4 +45,12 @@ public class BookingDTO {
         this.bookingDate = bookingDate;
     }
 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
