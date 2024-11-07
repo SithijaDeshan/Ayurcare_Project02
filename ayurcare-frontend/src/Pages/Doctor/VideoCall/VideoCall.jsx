@@ -21,7 +21,7 @@ function VideoCall() {
 
     useEffect(() => {
         if (currentDate) {
-            retriveVideoCallRequests(currentDate);
+            retriveVideoCallRequests("2024-10-25");
         }
     }, [currentDate]);
 
