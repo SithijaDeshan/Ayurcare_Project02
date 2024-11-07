@@ -23,7 +23,7 @@ function DoctorSidebar() {
     useEffect(() => {
         const fetchVideoCallRequests = async () => {
             try {
-                const response = await videoCallApi(currentDate, token);
+                const response = await videoCallApi("2024-10-25", token);
 
                 // Check if any status is 'Proceed'
                 const hasProceedStatus = response.data.some(item => item.status === "Proceed");
